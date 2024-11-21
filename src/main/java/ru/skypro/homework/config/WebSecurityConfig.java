@@ -14,6 +14,7 @@ import ru.skypro.homework.dto.Role;
 import static org.springframework.security.config.Customizer.withDefaults;
 
 @Configuration
+//@EnableSwagger2
 public class WebSecurityConfig {
 
     private static final String[] AUTH_WHITELIST = {
