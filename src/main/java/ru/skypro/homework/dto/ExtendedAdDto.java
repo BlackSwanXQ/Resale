@@ -7,7 +7,7 @@ import lombok.experimental.FieldDefaults;
 
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class ExtendedAd {
+public class ExtendedAdDto {
     @Schema(description = "id объявления")
     Long pk;
     @Schema(description = "имя автора объявления")

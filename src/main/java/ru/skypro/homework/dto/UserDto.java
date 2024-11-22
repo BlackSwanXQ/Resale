@@ -8,7 +8,7 @@ import lombok.experimental.FieldDefaults;
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Schema(description = "Сущность пользователя")
-public class User {
+public class UserDto {
 
         @Schema(description = "id пользователя")
         long id;
@@ -21,7 +21,7 @@ public class User {
         @Schema(description = "телефон пользователя", example = "+7 768 4177409")
         String phone;
         @Schema(description = "роль пользователя")
-        Role role;
+        RoleDto role;
         @Schema(description = "ссылка на аватар пользователя")
         String image;
     }

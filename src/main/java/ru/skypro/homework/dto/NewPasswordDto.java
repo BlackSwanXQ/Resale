@@ -7,7 +7,7 @@ import lombok.experimental.FieldDefaults;
 
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class NewPassword {
+public class NewPasswordDto {
     @Schema(maxLength = 16, minLength = 8, description = "текущий пароль")
     String currentPassword;
     @Schema(maxLength = 16, minLength = 8, description = "новый пароль")

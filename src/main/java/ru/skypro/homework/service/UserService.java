@@ -1,8 +1,8 @@
 package ru.skypro.homework.service;
 
-import ru.skypro.homework.dto.NewPassword;
+import ru.skypro.homework.dto.NewPasswordDto;
 
 public interface UserService {
-    boolean setNewPassword(NewPassword newPassword);
+    boolean setNewPassword(NewPasswordDto newPassword);
 
 }

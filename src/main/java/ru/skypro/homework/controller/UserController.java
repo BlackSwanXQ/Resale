@@ -11,10 +11,10 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import ru.skypro.homework.dto.NewPassword;
-import ru.skypro.homework.dto.Role;
-import ru.skypro.homework.dto.UpdateUser;
-import ru.skypro.homework.dto.User;
+import ru.skypro.homework.dto.NewPasswordDto;
+import ru.skypro.homework.dto.RoleDto;
+import ru.skypro.homework.dto.UpdateUserDto;
+import ru.skypro.homework.dto.UserDto;
 import ru.skypro.homework.service.UserService;
 
 @Slf4j
@@ -36,28 +36,28 @@ public class UserController {
             @ApiResponse(responseCode = "403", description = "Forbidden", content = @Content())
     })
     @PostMapping("/set_password")
-    public ResponseEntity<?> setPassword(@RequestBody NewPassword newPassword) {
+    public ResponseEntity<?> setPassword(@RequestBody NewPasswordDto newPassword) {
         return ResponseEntity.ok().build();
     }
 
     @Operation(summary = "Получение информации об авторизованном пользователе", responses = {
             @ApiResponse(responseCode = "200", description = "OK",
                     content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE,
-                            schema = @Schema(implementation = User.class)
+                            schema = @Schema(implementation = UserDto.class)
                     )),
             @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content())
     })
 
     @GetMapping("/me")
-    public ResponseEntity<User> getUser() {
-        User user = new User();
+    public ResponseEntity<UserDto> getUser() {
+        UserDto user = new UserDto();
         user.setId(1);
         user.setFirstName("FirstName");
         user.setLastName("LastName");
         user.setEmail("Email");
         user.setPhone("Phone");
         user.setImage("/image");
-        user.setRole(Role.USER);
+        user.setRole(RoleDto.USER);
         return ResponseEntity.ok(user);
     }
 
@@ -67,7 +67,7 @@ public class UserController {
                             description = "OK",
                             content = @Content(
                                     mediaType = MediaType.APPLICATION_JSON_VALUE,
-                                    schema = @Schema(implementation = UpdateUser.class),
+                                    schema = @Schema(implementation = UpdateUserDto.class),
                                     examples = @ExampleObject(
                                             description = "Информация о пользователе обновлена"
                                     )
@@ -77,7 +77,7 @@ public class UserController {
                             content = @Content())
             })
     @PatchMapping("/me")
-    public ResponseEntity<UpdateUser> updateUser(@RequestBody UpdateUser userPatch){
+    public ResponseEntity<UpdateUserDto> updateUser(@RequestBody UpdateUserDto userPatch){
         return ResponseEntity.ok().build();
     }
 

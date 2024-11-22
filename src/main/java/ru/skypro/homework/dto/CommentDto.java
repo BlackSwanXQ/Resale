@@ -7,7 +7,7 @@ import lombok.experimental.FieldDefaults;
 
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Comment {
+public class CommentDto {
     @Schema(description = "id автора комментария")
     long author;
     @Schema(description = "ссылка на аватар автора комментария")

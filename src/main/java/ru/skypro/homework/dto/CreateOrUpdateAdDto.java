@@ -8,7 +8,7 @@ import lombok.experimental.FieldDefaults;
 
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class CreateOrUpdateAd {
+public class CreateOrUpdateAdDto {
     @Schema(minLength = 4, maxLength = 32, description = "заголовок объявления")
     String title;
     @Schema(minimum = "0", maximum = "1000000", description = "цена объявления")

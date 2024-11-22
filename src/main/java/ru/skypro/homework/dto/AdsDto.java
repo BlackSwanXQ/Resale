@@ -11,14 +11,12 @@ import java.util.List;
 
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Ads {
-    @JsonProperty("count")
+public class AdsDto {
     @Schema(description = "общее количество объявлений")
     int count;
-    @JsonProperty("results")
-    List<Ad> results;
+    List<AdDto> results;
 
-    public Ads addResultsItem(Ad resultsItem) {
+    public AdsDto addResultsItem(AdDto resultsItem) {
         if (this.results == null) {
             this.results = new ArrayList<>();
         }

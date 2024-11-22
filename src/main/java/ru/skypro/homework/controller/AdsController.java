@@ -13,10 +13,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import ru.skypro.homework.dto.Ad;
-import ru.skypro.homework.dto.Ads;
-import ru.skypro.homework.dto.CreateOrUpdateAd;
-import ru.skypro.homework.dto.ExtendedAd;
+import ru.skypro.homework.dto.AdDto;
+import ru.skypro.homework.dto.AdsDto;
+import ru.skypro.homework.dto.CreateOrUpdateAdDto;
+import ru.skypro.homework.dto.ExtendedAdDto;
 import ru.skypro.homework.service.AdsService;
 
 import javax.validation.Valid;
@@ -36,9 +36,9 @@ public class AdsController {
     @Operation(summary = "Получение всех объявлений", tags = {"Объявления"})
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "OK", content =
-            @Content(mediaType = "application/json", schema = @Schema(implementation = Ads.class)))})
+            @Content(mediaType = "application/json", schema = @Schema(implementation = AdsDto.class)))})
     @GetMapping
-    public ResponseEntity<Ads> getAds() {
+    public ResponseEntity<AdsDto> getAds() {
         log.info("The getAds method of AdsController is called");
         return ResponseEntity.ok().body(adsService.getAdAll());
     }
@@ -46,12 +46,12 @@ public class AdsController {
     @Operation(summary = "Добавление объявления", tags = {"Объявления"})
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "Created", content = @Content(mediaType = "application/json",
-                    schema = @Schema(implementation = Ad.class))),
+                    schema = @Schema(implementation = AdDto.class))),
 
             @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content())})
     @PostMapping(consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
-    public ResponseEntity<Ad> createAd(@RequestPart(value = "properties") @Valid CreateOrUpdateAd ad,
-                                       @RequestPart(value = "image") MultipartFile image) {
+    public ResponseEntity<AdDto> createAd(@RequestPart(value = "properties") @Valid CreateOrUpdateAdDto ad,
+                                          @RequestPart(value = "image") MultipartFile image) {
         log.info("The createAd method of AdsController is called");
         return ResponseEntity.status(HttpStatus.CREATED).body(adsService.createAd(ad, image));
     }
@@ -59,13 +59,12 @@ public class AdsController {
     @Operation(summary = "Получение информации об объявлении", tags = {"Объявления"})
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "OK",
-                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = ExtendedAd.class))),
-
+                    content = @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = ExtendedAdDto.class))),
             @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content()),
-
             @ApiResponse(responseCode = "404", description = "Not found", content = @Content())})
     @GetMapping("/{id}")
-    public ResponseEntity<ExtendedAd> getAdsExtended(@PathVariable("id") Long id) {
+    public ResponseEntity<ExtendedAdDto> getAdsExtended(@PathVariable("id") Long id) {
         log.info("The getAdsExtended method of AdsController is called");
         return ResponseEntity.ok().body(adsService.getAd(id));
     }
@@ -73,11 +72,8 @@ public class AdsController {
     @Operation(summary = "Удаление объявления", tags = {"Объявления"})
     @ApiResponses(value = {
             @ApiResponse(responseCode = "204", description = "No Content"),
-
             @ApiResponse(responseCode = "401", description = "Unauthorized"),
-
             @ApiResponse(responseCode = "403", description = "Forbidden"),
-
             @ApiResponse(responseCode = "404", description = "Not found")})
     @PreAuthorize("@checkAccessService.isAdminOrOwnerAd(#id, authentication)")
     @DeleteMapping("/{id}")
@@ -90,37 +86,37 @@ public class AdsController {
     @Operation(summary = "Обновление информации об объявлении", tags = {"Объявления"})
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "OK",
-                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = Ad.class))),
-
-            @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content()),
-
-            @ApiResponse(responseCode = "403", description = "Forbidden", content = @Content()),
-
-            @ApiResponse(responseCode = "404", description = "Not found", content = @Content())
+                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = AdDto.class))),
+            @ApiResponse(responseCode = "401", description = "Unauthorized",
+                    content = @Content()),
+            @ApiResponse(responseCode = "403", description = "Forbidden",
+                    content = @Content()),
+            @ApiResponse(responseCode = "404", description = "Not found",
+                    content = @Content())
     })
     @PreAuthorize("@checkAccessService.isAdminOrOwnerAd(#id, authentication)")
     @PatchMapping("/{id}")
-    public ResponseEntity<Ad> updateAds(@PathVariable("id") Long id, @RequestBody CreateOrUpdateAd createOrUpdateAd) {
+    public ResponseEntity<AdDto> updateAds(@PathVariable("id") Long id, @RequestBody CreateOrUpdateAdDto createOrUpdateAd) {
         return ResponseEntity.ok().body(adsService.updateAds(id, createOrUpdateAd));
     }
 
     @Operation(summary = "Получение объявлений авторизованного пользователя", tags = {"Объявления"})
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "OK",
-                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = Ads.class))),
-
+                    content = @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = AdsDto.class))),
             @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content())
     })
     @GetMapping("/me")
-    public ResponseEntity<Ads> getAdsAuthorizedUser() {
+    public ResponseEntity<AdsDto> getAdsAuthorizedUser() {
         return ResponseEntity.ok().body(adsService.getAdsAuthorizedUser());
     }
 
     @Operation(summary = "Обновление картинки объявления", tags = {"Объявления"})
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "OK",
-                    content = @Content(mediaType = "application/octet-stream",  array = @ArraySchema(schema = @Schema(implementation = byte[].class)))),
-
+                    content = @Content(mediaType = "application/octet-stream",
+                            array = @ArraySchema(schema = @Schema(implementation = byte[].class)))),
             @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content()),
             @ApiResponse(responseCode = "403", description = "Forbidden", content = @Content()),
             @ApiResponse(responseCode = "404", description = "Not found", content = @Content())
@@ -131,5 +127,4 @@ public class AdsController {
                                                     @RequestPart("image") MultipartFile image) {
         return ResponseEntity.ok().body(adsService.updateImage(id, image));
     }
-
 }

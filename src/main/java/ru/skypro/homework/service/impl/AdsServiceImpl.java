@@ -2,10 +2,10 @@ package ru.skypro.homework.service.impl;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-import ru.skypro.homework.dto.Ad;
-import ru.skypro.homework.dto.Ads;
-import ru.skypro.homework.dto.CreateOrUpdateAd;
-import ru.skypro.homework.dto.ExtendedAd;
+import ru.skypro.homework.dto.AdDto;
+import ru.skypro.homework.dto.AdsDto;
+import ru.skypro.homework.dto.CreateOrUpdateAdDto;
+import ru.skypro.homework.dto.ExtendedAdDto;
 import ru.skypro.homework.service.AdsService;
 
 import java.util.List;
@@ -13,17 +13,17 @@ import java.util.List;
 @Service
 public class AdsServiceImpl implements AdsService {
     @Override
-    public Ads getAdAll() {
+    public AdsDto getAdAll() {
         return null;
     }
 
     @Override
-    public Ad createAd(CreateOrUpdateAd createOrUpdateAd, MultipartFile image) {
+    public AdDto createAd(CreateOrUpdateAdDto createOrUpdateAd, MultipartFile image) {
         return null;
     }
 
     @Override
-    public ExtendedAd getAd(Long id) {
+    public ExtendedAdDto getAd(Long id) {
         return null;
     }
 
@@ -38,12 +38,12 @@ public class AdsServiceImpl implements AdsService {
 //    }
 
     @Override
-    public Ad updateAds(Long id, CreateOrUpdateAd createOrUpdateAd) {
+    public AdDto updateAds(Long id, CreateOrUpdateAdDto createOrUpdateAd) {
         return null;
     }
 
     @Override
-    public Ads getAdsAuthorizedUser() {
+    public AdsDto getAdsAuthorizedUser() {
         return null;
     }
 

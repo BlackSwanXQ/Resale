@@ -11,9 +11,9 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import ru.skypro.homework.dto.Comment;
-import ru.skypro.homework.dto.Comments;
-import ru.skypro.homework.dto.CreateOrUpdateComment;
+import ru.skypro.homework.dto.CommentDto;
+import ru.skypro.homework.dto.CommentsDto;
+import ru.skypro.homework.dto.CreateOrUpdateCommentDto;
 import ru.skypro.homework.service.CommentService;
 
 @Slf4j
@@ -31,7 +31,7 @@ public class CommentController {
                     description = "OK",
                     content = @Content(
                             mediaType = MediaType.APPLICATION_JSON_VALUE,
-                            schema = @Schema(implementation = Comments.class)
+                            schema = @Schema(implementation = CommentsDto.class)
                     )),
             @ApiResponse(responseCode = "401",
                     description = "Unauthorized",
@@ -41,7 +41,7 @@ public class CommentController {
                     content = @Content())
     })
     @GetMapping("/{id}/comments")
-    public ResponseEntity<Comments> get(@PathVariable("id") Long id) {
+    public ResponseEntity<CommentsDto> get(@PathVariable("id") Long id) {
         log.info("The get method of CommentController is called");
         return ResponseEntity.ok(commentService.get(id));
     }
@@ -51,7 +51,7 @@ public class CommentController {
                     description = "OK",
                     content = @Content(
                             mediaType = MediaType.APPLICATION_JSON_VALUE,
-                            schema = @Schema(implementation = Comment.class)
+                            schema = @Schema(implementation = CommentDto.class)
                     )),
             @ApiResponse(responseCode = "401",
                     description = "Unauthorized",
@@ -61,8 +61,8 @@ public class CommentController {
                     content = @Content())
     })
     @PostMapping("/{id}/comments")
-    public ResponseEntity<Comment> create(@PathVariable("id") Long id,
-                                          @RequestBody CreateOrUpdateComment newComment) {
+    public ResponseEntity<CommentDto> create(@PathVariable("id") Long id,
+                                             @RequestBody CreateOrUpdateCommentDto newComment) {
         log.info("The create method of CommentController is called");
         return ResponseEntity.ok(commentService.create(id, newComment));
     }
@@ -95,7 +95,7 @@ public class CommentController {
                     description = "OK",
                     content = @Content(
                             mediaType = MediaType.APPLICATION_JSON_VALUE,
-                            schema = @Schema(implementation = Comment.class)
+                            schema = @Schema(implementation = CommentDto.class)
                     )),
             @ApiResponse(responseCode = "401",
                     description = "Unauthorized",
@@ -109,9 +109,9 @@ public class CommentController {
     })
     @PreAuthorize("@checkAccessService.isAdminOrOwnerComment(#adId, #commentId, authentication)")
     @PatchMapping("/{adId}/comments/{commentId}")
-    public ResponseEntity<Comment> update(@PathVariable(value = "adId") Long adId,
-                                          @PathVariable(value = "commentId") Long commentId,
-                                          @RequestBody CreateOrUpdateComment newComment) {
+    public ResponseEntity<CommentDto> update(@PathVariable(value = "adId") Long adId,
+                                             @PathVariable(value = "commentId") Long commentId,
+                                             @RequestBody CreateOrUpdateCommentDto newComment) {
         log.info("The update method of CommentController is called");
         return ResponseEntity.ok(commentService.update(adId, commentId, newComment));
     }

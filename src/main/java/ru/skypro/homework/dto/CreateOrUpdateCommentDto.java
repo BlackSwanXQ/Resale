@@ -5,12 +5,9 @@ import lombok.AccessLevel;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;
 
-import java.util.List;
-
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Comments {
-    @Schema(description = "общее количество комментариев")
-    int count;
-    List<Comment> results;
+public class CreateOrUpdateCommentDto {
+    @Schema(minLength = 8, maxLength = 64, description = "текст комментария")
+    String text;
 }

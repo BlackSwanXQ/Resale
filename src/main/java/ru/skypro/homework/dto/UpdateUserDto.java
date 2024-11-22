@@ -7,7 +7,7 @@ import lombok.experimental.FieldDefaults;
 
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class UpdateUser {
+public class UpdateUserDto {
     @Schema(minLength = 3, maxLength = 10, description = "имя пользователя")
     String firstName;
     @Schema(minLength = 3, maxLength = 10, description = "фамилия пользователя")
