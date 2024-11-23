@@ -9,11 +9,12 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
-import ru.skypro.homework.dto.Role;
+import ru.skypro.homework.dto.RoleDto;
 
 import static org.springframework.security.config.Customizer.withDefaults;
 
 @Configuration
+//@EnableSwagger2
 public class WebSecurityConfig {
 
     private static final String[] AUTH_WHITELIST = {
@@ -32,7 +33,7 @@ public class WebSecurityConfig {
                         .username("user@gmail.com")
                         .password("password")
                         .passwordEncoder(passwordEncoder::encode)
-                        .roles(Role.USER.name())
+                        .roles(RoleDto.USER.name())
                         .build();
         return new InMemoryUserDetailsManager(user);
     }
