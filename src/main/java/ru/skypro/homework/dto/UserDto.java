@@ -4,6 +4,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;
+import ru.skypro.homework.enums.Role;
 
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
@@ -21,7 +22,7 @@ public class UserDto {
         @Schema(description = "телефон пользователя", example = "+7 768 4177409")
         String phone;
         @Schema(description = "роль пользователя")
-        RoleDto role;
+        Role role;
         @Schema(description = "ссылка на аватар пользователя")
         String image;
     }
