@@ -10,6 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import ru.skypro.homework.dto.CommentDto;
 import ru.skypro.homework.dto.CommentsDto;
@@ -41,7 +42,7 @@ public class CommentController {
                     content = @Content())
     })
     @GetMapping("/{id}/comments")
-    public ResponseEntity<CommentsDto> get(@PathVariable("id") Long id) {
+    public ResponseEntity<CommentsDto> get(@PathVariable("id") Integer id) {
         log.info("The get method of CommentController is called");
         return ResponseEntity.ok(commentService.get(id));
     }
@@ -61,10 +62,11 @@ public class CommentController {
                     content = @Content())
     })
     @PostMapping("/{id}/comments")
-    public ResponseEntity<CommentDto> create(@PathVariable("id") Long id,
-                                             @RequestBody CreateOrUpdateCommentDto newComment) {
+    public ResponseEntity<CommentDto> create(@PathVariable("id") Integer id,
+                                             @RequestBody CreateOrUpdateCommentDto newComment,
+                                             Authentication authentication) {
         log.info("The create method of CommentController is called");
-        return ResponseEntity.ok(commentService.create(id, newComment));
+        return ResponseEntity.ok(commentService.create(id, newComment,authentication.getName()));
     }
 
     @Operation(summary = "Удаление комментария", responses = {
@@ -83,8 +85,8 @@ public class CommentController {
     })
     @PreAuthorize("@checkAccessService.isAdminOrOwnerComment(#adId, #commentId, authentication)")
     @DeleteMapping("/{adId}/comments/{commentId}")
-    public ResponseEntity<?> delete(@PathVariable(value = "adId") Long adId,
-                                    @PathVariable(value = "commentId") Long commentId) {
+    public ResponseEntity<?> delete(@PathVariable(value = "adId") Integer adId,
+                                    @PathVariable(value = "commentId") Integer commentId) {
         log.info("The delete method of CommentController is called");
         commentService.delete(adId, commentId);
         return ResponseEntity.ok().build();
@@ -109,8 +111,8 @@ public class CommentController {
     })
     @PreAuthorize("@checkAccessService.isAdminOrOwnerComment(#adId, #commentId, authentication)")
     @PatchMapping("/{adId}/comments/{commentId}")
-    public ResponseEntity<CommentDto> update(@PathVariable(value = "adId") Long adId,
-                                             @PathVariable(value = "commentId") Long commentId,
+    public ResponseEntity<CommentDto> update(@PathVariable(value = "adId") Integer adId,
+                                             @PathVariable(value = "commentId") Integer commentId,
                                              @RequestBody CreateOrUpdateCommentDto newComment) {
         log.info("The update method of CommentController is called");
         return ResponseEntity.ok(commentService.update(adId, commentId, newComment));

@@ -13,14 +13,18 @@ import java.util.List;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class AdsDto {
     @Schema(description = "общее количество объявлений")
-    int count;
-    List<AdDto> results;
+//    int count;
+//
+//    List<AdDto> results=new ArrayList<>();
+//
+//    public AdsDto addResultsItem(AdDto resultsItem) {
+//        if (this.results == null) {
+//            this.results = new ArrayList<>();
+//        }
+//        this.results.add(resultsItem);
+//        return this;
+//    }
+    private Integer count;
 
-    public AdsDto addResultsItem(AdDto resultsItem) {
-        if (this.results == null) {
-            this.results = new ArrayList<>();
-        }
-        this.results.add(resultsItem);
-        return this;
-    }
+    private List<AdDto> results;
 }

@@ -34,7 +34,7 @@ public class AuthController {
     @Tag(name = "Авторизация")
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginDto login) {
-        if (authService.login(login.getUsername(), login.getPassword())) {
+        if (authService.login(login)) {
             return ResponseEntity.ok().build();
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
