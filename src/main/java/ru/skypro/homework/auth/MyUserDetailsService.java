@@ -24,7 +24,6 @@ public class MyUserDetailsService implements UserDetailsManager {
         this.encoder = encoder;
         this.userRepository = userRepository;
     }
-
     @Override
     public UserDetails loadUserByUsername(String email) {
         UserEntity user = userRepository.findByEmail(email).orElseThrow(() -> {

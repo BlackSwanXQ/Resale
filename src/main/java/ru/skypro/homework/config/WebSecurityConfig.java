@@ -27,7 +27,6 @@ public class WebSecurityConfig {
             "/ads/image"
     };
 
-
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf()
