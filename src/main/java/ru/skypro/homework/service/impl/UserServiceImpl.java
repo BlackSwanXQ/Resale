@@ -59,7 +59,6 @@ public class UserServiceImpl implements UserService {
 
 
 
-
     public UserServiceImpl(UserRepository userRepository,
                            UserMapper userMapper,
                            PasswordEncoder encoder,
@@ -121,6 +120,7 @@ public class UserServiceImpl implements UserService {
         user.setPhone(userPatch.getPhone());
         userRepository.save(user);
         return userPatch;
+
     }
 
 

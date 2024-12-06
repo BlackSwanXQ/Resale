@@ -27,6 +27,8 @@ public class AuthController {
         this.authService = authService;
     }
 
+
+
     @Operation(summary = "Авторизация пользователя" , responses = {
             @ApiResponse(responseCode = "200", description = "OK", content = @Content()),
             @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content())

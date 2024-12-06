@@ -17,6 +17,7 @@ public class AdsDto {
 //
 //    List<AdDto> results=new ArrayList<>();
 //
+
 //    public AdsDto addResultsItem(AdDto resultsItem) {
 //        if (this.results == null) {
 //            this.results = new ArrayList<>();
@@ -25,6 +26,7 @@ public class AdsDto {
 //        return this;
 //    }
     private Integer count;
+
 
     private List<AdDto> results;
 }

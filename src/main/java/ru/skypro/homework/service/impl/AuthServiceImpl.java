@@ -22,6 +22,7 @@ public class AuthServiceImpl implements AuthService {
 
     private final UserMapper userMapper;
 
+
     private final UserDetailsManager manager;
     private final PasswordEncoder encoder;
 
@@ -74,6 +75,7 @@ public class AuthServiceImpl implements AuthService {
 //                        .username(register.getUsername())
 //                        .roles(register.getRole().name())
 //                        .build());
+
 
         Optional<UserEntity> user = userRepository.findByEmail(register.getUsername());
         if (user.isPresent()) {

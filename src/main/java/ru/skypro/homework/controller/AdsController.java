@@ -41,6 +41,7 @@ public class AdsController {
         this.imageAdService = imageAdService;
     }
 
+
     @Operation(summary = "Получение всех объявлений", tags = {"Объявления"})
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "OK", content =
@@ -131,6 +132,7 @@ public class AdsController {
             @ApiResponse(responseCode = "403", description = "Forbidden", content = @Content()),
             @ApiResponse(responseCode = "404", description = "Not found", content = @Content())
     })
+
     @PreAuthorize("@checkAccessService.isAdminOrOwnerAd(#id, authentication)")
     @PatchMapping(value = "/{id}/image", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
 //    public ResponseEntity<List<String>> updateImage(@PathVariable("id") Integer id,

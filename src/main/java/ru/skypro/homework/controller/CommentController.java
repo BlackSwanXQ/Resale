@@ -25,6 +25,7 @@ import ru.skypro.homework.service.CommentService;
 @CrossOrigin("http://localhost:3000")
 public class CommentController {
 
+
     private final CommentService commentService;
 
     @Operation(summary = "Получение комментариев объявления", responses = {
@@ -116,5 +117,6 @@ public class CommentController {
                                              @RequestBody CreateOrUpdateCommentDto newComment) {
         log.info("The update method of CommentController is called");
         return ResponseEntity.ok(commentService.update(adId, commentId, newComment));
+
     }
 }

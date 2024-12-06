@@ -35,7 +35,6 @@ public class CommentServiceImpl implements CommentService {
     private final EntityManager entityManager;
 
 
-
     /**
      * Получение коментраия по id объявления
      */
@@ -120,4 +119,5 @@ public class CommentServiceImpl implements CommentService {
         log.info("Комментарий удалён");
         return commentsMapper.commentToCommentDTO(comment);
     }
+
 }

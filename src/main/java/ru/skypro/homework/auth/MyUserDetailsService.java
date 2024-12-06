@@ -16,10 +16,10 @@ import ru.skypro.homework.dto.RoleDto;
 @Slf4j
 @Service
 public class MyUserDetailsService implements UserDetailsManager {
-    //    Logger logger = LoggerFactory.getLogger(MyUserDetailsService.class);
     private final PasswordEncoder encoder;
 
     private final UserRepository userRepository;
+
 
     public MyUserDetailsService(PasswordEncoder encoder, UserRepository userRepository) {
         this.encoder = encoder;

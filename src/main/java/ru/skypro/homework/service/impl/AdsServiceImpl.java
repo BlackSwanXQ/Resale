@@ -41,6 +41,7 @@ import static java.nio.file.Paths.get;
 @Service
 public class AdsServiceImpl implements AdsService {
 
+
     private final ImageRepository imageRepository;
     private final AdRepository adRepository;
 //    private final Path path;
@@ -134,7 +135,6 @@ public class AdsServiceImpl implements AdsService {
         log.info("Вы успешно изменили информацию в объявлении");
         return adMapper.toAdDto(adRepository.save(ad));
     }
-
 
 
 

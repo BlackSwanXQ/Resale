@@ -28,6 +28,7 @@ public class WebSecurityConfig {
     };
 
 
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf()
@@ -44,6 +45,7 @@ public class WebSecurityConfig {
                 .httpBasic(withDefaults());
         return http.build();
     }
+
 
     @Bean
     public PasswordEncoder passwordEncoder() {
