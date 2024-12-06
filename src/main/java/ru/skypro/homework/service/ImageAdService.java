@@ -12,7 +12,6 @@ public interface ImageAdService {
 
 //    List<String> updateImage(Long id, MultipartFile image);
 
-
     byte[] getImageAd(Integer id) throws IOException;
     AdDto createAd(AdDto AdDto, MultipartFile image, String userName) throws IOException;
     default String getExtension(String fileName) {

@@ -19,6 +19,7 @@ public class AdDto {
     @Schema(description = "id объявления", example = "0")
     Long pk;
 
+
     @Schema(description = "цена объявления",example = "0")
     Integer price;
 

@@ -35,7 +35,6 @@ public class CommentServiceImpl implements CommentService {
     private final EntityManager entityManager;
 
 
-
     /**
      * Получение коментраия по id объявления
      */

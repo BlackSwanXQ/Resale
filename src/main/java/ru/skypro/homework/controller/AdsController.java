@@ -41,6 +41,7 @@ public class AdsController {
         this.imageAdService = imageAdService;
     }
 
+
     @Operation(summary = "Получение всех объявлений", tags = {"Объявления"})
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "OK", content =

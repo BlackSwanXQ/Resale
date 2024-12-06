@@ -15,6 +15,7 @@ public class MyUserPrincipal implements UserDetails {
         this.user = user;
 
     }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
 

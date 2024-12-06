@@ -20,8 +20,6 @@ public interface UserMapper {
     UserEntity toUser(RegisterDto source);
 
 
-
-
     @Mapping(constant ="/users/me/image" , target = "image")
 
     @Mapping(source = "role", target = "role")

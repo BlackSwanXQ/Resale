@@ -33,7 +33,6 @@ public class ImageAdServiceImpl implements ImageAdService {
     private final ImageRepository imageAdRepository;
     private final AdMapper adMapper;
 
-
     private final AdRepository adRepository;
     private final Path path;
     private final UserRepository userRepository;

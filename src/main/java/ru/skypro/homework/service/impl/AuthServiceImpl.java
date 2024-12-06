@@ -22,6 +22,7 @@ public class AuthServiceImpl implements AuthService {
 
     private final UserMapper userMapper;
 
+
     private final UserDetailsManager manager;
     private final PasswordEncoder encoder;
 

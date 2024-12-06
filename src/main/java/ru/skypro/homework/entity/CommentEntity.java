@@ -64,6 +64,7 @@ import java.time.LocalDateTime;
 @Entity
 public class CommentEntity {
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

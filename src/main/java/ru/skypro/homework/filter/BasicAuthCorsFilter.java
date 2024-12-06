@@ -13,7 +13,6 @@ import java.io.IOException;
 @Component
 public class BasicAuthCorsFilter extends OncePerRequestFilter {
 
-
     @Override
     protected void doFilterInternal(HttpServletRequest httpServletRequest,
                                     HttpServletResponse httpServletResponse,

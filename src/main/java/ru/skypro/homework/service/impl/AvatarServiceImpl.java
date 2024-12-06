@@ -39,6 +39,7 @@ public class AvatarServiceImpl implements AvatarService {
     private final AvatarRepository avatarRepository;
     private final Path path;
 
+
     public AvatarServiceImpl(UserRepository userRepository,
                              AvatarRepository avatarRepository,
                              @Value("/images") String imagesDirName) {

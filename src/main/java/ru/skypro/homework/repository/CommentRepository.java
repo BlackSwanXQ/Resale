@@ -8,5 +8,4 @@ import java.util.List;
 
 public interface CommentRepository extends JpaRepository<CommentEntity, Integer> {
     List<CommentEntity> findAllByAdId(Integer id);
-
 }

@@ -10,4 +10,5 @@ public interface ImageRepository extends JpaRepository<ImageAdEntity, Long> {
     Optional<ImageAdEntity> findImageAdByAdId(Integer id);
 //    Optional<UserEntity> findByEmail(String username);
 
+
 }

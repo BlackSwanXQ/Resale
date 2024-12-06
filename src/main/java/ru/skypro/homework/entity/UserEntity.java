@@ -104,7 +104,6 @@ import java.util.Set;
 @AllArgsConstructor
 @Entity
 public class UserEntity {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

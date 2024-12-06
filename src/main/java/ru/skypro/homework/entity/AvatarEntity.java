@@ -43,6 +43,7 @@ import javax.persistence.*;
 @Entity
 public class AvatarEntity {
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

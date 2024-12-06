@@ -16,6 +16,7 @@ public interface AvatarService {
 void updateImage(MultipartFile animalPhoto) throws IOException;
     ResponseEntity<byte[]> getAvatar() throws IOException;
 
+
     default String getExtension(String fileName) {
         return fileName.substring(fileName.lastIndexOf(".") + 1);
     }

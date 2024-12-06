@@ -35,6 +35,7 @@ public class ImageController {
 //        return null;
 //    }
 
+
     @GetMapping(value = "/image-ad/{id}", produces = {MediaType.IMAGE_JPEG_VALUE, MediaType.IMAGE_PNG_VALUE, "image/*"})
     public byte[] getImageAd(@PathVariable Integer id) throws IOException {
         log.info("Вызван метод контролера возращаюший массив байт изображения объявления");
