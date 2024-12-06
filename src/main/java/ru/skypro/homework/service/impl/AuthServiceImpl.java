@@ -75,6 +75,7 @@ public class AuthServiceImpl implements AuthService {
 //                        .roles(register.getRole().name())
 //                        .build());
 
+
         Optional<UserEntity> user = userRepository.findByEmail(register.getUsername());
         if (user.isPresent()) {
             return false;

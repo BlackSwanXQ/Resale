@@ -21,6 +21,7 @@ public interface UserMapper {
 
 
 
+
     @Mapping(constant ="/users/me/image" , target = "image")
 
     @Mapping(source = "role", target = "role")

@@ -131,6 +131,7 @@ public class AdsController {
             @ApiResponse(responseCode = "403", description = "Forbidden", content = @Content()),
             @ApiResponse(responseCode = "404", description = "Not found", content = @Content())
     })
+
     @PreAuthorize("@checkAccessService.isAdminOrOwnerAd(#id, authentication)")
     @PatchMapping(value = "/{id}/image", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
 //    public ResponseEntity<List<String>> updateImage(@PathVariable("id") Integer id,

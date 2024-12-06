@@ -114,6 +114,7 @@ public class UserController {
         avatarService.updateImage(image);
     }
 
+
     @GetMapping(value = "/me/image", produces = {MediaType.IMAGE_JPEG_VALUE, "image/*"})
     public ResponseEntity<byte[]> getAvatar() throws IOException {
         log.info("Вызван метод контролера возращаюший массив байт аватара");

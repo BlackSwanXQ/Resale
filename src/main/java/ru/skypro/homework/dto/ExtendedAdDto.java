@@ -24,6 +24,7 @@ public class ExtendedAdDto {
     String phone;
     @Schema(description = "цена объявления")
     int price;
+
     @Schema(description = "заголовок объявления")
     String title;
 }

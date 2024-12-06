@@ -12,6 +12,7 @@ import java.util.List;
 
 public interface AdsService {
 //
+
     AdsDto getAdAll();
 //    Ad updateAd(Ad ad);
     ExtendedAdDto getAd(Integer id);

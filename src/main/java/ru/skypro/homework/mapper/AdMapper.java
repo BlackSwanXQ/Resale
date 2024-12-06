@@ -48,6 +48,7 @@ public interface AdMapper {
 //    default String map(ImageAdEntity image) {
 //        return image != null ? image.getPath() : null;
 //    }
+
     @Mappings({
             @Mapping(target = "author", source = "author.id"),
             @Mapping(target = "pk", source = "id"),

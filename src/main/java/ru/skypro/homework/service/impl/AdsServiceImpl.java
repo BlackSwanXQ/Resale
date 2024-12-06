@@ -137,7 +137,6 @@ public class AdsServiceImpl implements AdsService {
 
 
 
-
     @Override
     public List<String> updateImage(Long id, MultipartFile image) {
         return List.of();

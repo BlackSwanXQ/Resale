@@ -12,5 +12,6 @@ import java.util.List;
 public class CommentsDto {
     @Schema(description = "общее количество комментариев")
     int count;
+
     List<CommentDto> results;
 }

@@ -88,6 +88,7 @@ public class AvatarServiceImpl implements AvatarService {
         }
     }
 
+
     /**
      * Возращает аватар в виде массива байт.
      */

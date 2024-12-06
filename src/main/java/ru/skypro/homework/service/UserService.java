@@ -14,6 +14,7 @@ import java.net.URL;
 
 public interface UserService {
 
+
     boolean setNewPassword(NewPasswordDto newPassword);
 
     UserDto getUser();

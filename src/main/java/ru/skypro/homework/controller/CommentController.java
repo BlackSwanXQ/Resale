@@ -116,5 +116,6 @@ public class CommentController {
                                              @RequestBody CreateOrUpdateCommentDto newComment) {
         log.info("The update method of CommentController is called");
         return ResponseEntity.ok(commentService.update(adId, commentId, newComment));
+
     }
 }

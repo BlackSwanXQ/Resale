@@ -42,6 +42,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Entity
 public class AvatarEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

@@ -46,6 +46,7 @@ public class ImageAdEntity {
     private String mediaType;
     @JsonIgnore
     private byte[] data;
+
     @OneToOne
     @JsonIgnore
     private AdEntity ad;

@@ -31,6 +31,7 @@ public class AdEntity {
     @OneToMany
     private List<CommentEntity> comments;
 
+
     public AdEntity() {
     }
     public void setComment(CommentEntity comment) {

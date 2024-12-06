@@ -13,6 +13,7 @@ import java.util.List;
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
 public interface CommentsMapper {
 
+
     @Mappings({
             @Mapping(target = "pk", source = "id"),
             @Mapping(target = "author", source = "author.id"),

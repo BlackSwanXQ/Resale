@@ -8,5 +8,4 @@ public interface AuthService {
 
     boolean register(RegisterDto register);
 
-
 }

@@ -14,6 +14,7 @@ public class UserDto {
 
         @Schema(description = "id пользователя")
         long id;
+
         @Schema(description = "логин пользователя")
         String email;
         @Schema(description = "имя пользователя")
