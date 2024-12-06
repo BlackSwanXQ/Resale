@@ -16,6 +16,7 @@ public class MyUserPrincipal implements UserDetails {
 
     }
 
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
 

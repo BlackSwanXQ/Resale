@@ -35,6 +35,7 @@ public class AdsController {
     private final AdsService adsService;
     private final ImageAdService imageAdService;
 
+
     public AdsController(AdsService adsService,
                          ImageAdService imageAdService) {
         this.adsService = adsService;

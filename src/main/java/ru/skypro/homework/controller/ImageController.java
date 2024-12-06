@@ -25,6 +25,7 @@ import java.util.List;
 @CrossOrigin(value = "http://localhost:3000")
 @RequiredArgsConstructor
 public class ImageController {
+
     private final AvatarService avatarService;
     private final ImageAdService imageAdService;
     private final ImageRepository imageRepository;

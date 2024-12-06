@@ -6,7 +6,6 @@ import ru.skypro.homework.dto.CreateOrUpdateCommentDto;
 
 
 public interface CommentService {
-
     CommentsDto get(Integer id);
     CommentDto create(Integer id, CreateOrUpdateCommentDto newComment,String name);
     void delete(Integer adId, Integer commentId);

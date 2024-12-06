@@ -19,7 +19,6 @@ public interface AdMapper {
 //    AdDto adToAdDto(AdEntity source);
 
 
-
 //    @Mapping(source = "author", target = "author.id")
 //    @Mapping(source = "image", target = "image.path")
 //    @Mapping(source = "pk", target = "id")

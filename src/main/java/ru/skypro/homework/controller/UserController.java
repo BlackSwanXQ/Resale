@@ -41,6 +41,7 @@ public class UserController {
     public UserController(UserService userService,
              AvatarService avatarService
     ) {
+
         this.userService = userService;
         this.avatarService = avatarService;
 

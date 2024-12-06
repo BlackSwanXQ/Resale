@@ -100,6 +100,7 @@ public class MyUserDetailsService implements UserDetailsManager {
 //        logger.info("Вы успешно изменили пароль");
     }
 
+
     @Override
     public boolean userExists(String username) {
         return userRepository.findByEmail(username).isPresent();

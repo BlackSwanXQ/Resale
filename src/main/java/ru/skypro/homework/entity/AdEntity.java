@@ -23,7 +23,6 @@ public class AdEntity {
 
 //    private String path;
 
-
     private Integer price;
     private String title;
     private String description;

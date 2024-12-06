@@ -8,5 +8,4 @@ import java.util.List;
 
 public interface AdRepository extends JpaRepository<AdEntity,Integer> {
     List<AdEntity> findByAuthorEmail(String email);
-
 }

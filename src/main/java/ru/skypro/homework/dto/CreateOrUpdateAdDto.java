@@ -14,6 +14,7 @@ public class CreateOrUpdateAdDto {
     @Schema(minimum = "0", maximum = "1000000", description = "цена объявления")
     int price;
 
+
     @Schema(minLength = 8, maxLength = 63, description = "описание объявления")
     String description;
 

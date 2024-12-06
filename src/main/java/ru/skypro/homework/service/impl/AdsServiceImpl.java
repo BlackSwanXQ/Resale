@@ -41,7 +41,6 @@ import static java.nio.file.Paths.get;
 @Service
 public class AdsServiceImpl implements AdsService {
 
-
     private final ImageRepository imageRepository;
     private final AdRepository adRepository;
 //    private final Path path;

@@ -13,6 +13,5 @@ public class NewPasswordDto {
     @Schema(maxLength = 16, minLength = 8, description = "новый пароль")
 
     String newPassword;
-
 }
 

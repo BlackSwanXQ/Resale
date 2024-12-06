@@ -15,6 +15,7 @@ public class CheckService {
         if(!mat.matches()){
 //            throw new WrongNumberException("Номер телефона не соответствует образцу");
             System.out.println("Invalid phone number");
+
         }
 
     }

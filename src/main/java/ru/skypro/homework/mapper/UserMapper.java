@@ -19,7 +19,6 @@ public interface UserMapper {
     @Mapping(target = "email", source = "username")
     UserEntity toUser(RegisterDto source);
 
-
     @Mapping(constant ="/users/me/image" , target = "image")
 
     @Mapping(source = "role", target = "role")

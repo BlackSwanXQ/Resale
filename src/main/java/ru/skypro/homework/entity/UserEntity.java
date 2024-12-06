@@ -119,7 +119,6 @@ public class UserEntity {
     @Enumerated(EnumType.STRING)
     private RoleDto role;
 
-
     public UserEntity() {
 
     }

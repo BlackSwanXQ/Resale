@@ -18,6 +18,7 @@ public class CommentDto {
     long createdAt;
 
 
+
     @Schema(description = "id комментария")
     long pk;
     @Schema(description = "текст комментария")

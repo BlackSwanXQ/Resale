@@ -36,7 +36,6 @@ public class ImageAdServiceImpl implements ImageAdService {
     private final AdRepository adRepository;
     private final Path path;
     private final UserRepository userRepository;
-
     public ImageAdServiceImpl(ImageRepository imageAdRepository,
                               AdRepository adRepository,
                               @Value("/ads") String imagesDir,

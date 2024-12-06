@@ -23,7 +23,6 @@ public interface CommentsMapper {
     CommentDto commentToCommentDTO(CommentEntity comment);
 
 
-
     List<CommentDto> commentsToCommentsDTO(List<CommentEntity> comments);
     CreateOrUpdateCommentDto commentToCreateOrUpdateCommentDto(CommentEntity comment);
 

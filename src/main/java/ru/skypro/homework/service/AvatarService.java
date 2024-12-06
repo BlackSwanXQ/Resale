@@ -20,5 +20,4 @@ void updateImage(MultipartFile animalPhoto) throws IOException;
     default String getExtension(String fileName) {
         return fileName.substring(fileName.lastIndexOf(".") + 1);
     }
-
 }
