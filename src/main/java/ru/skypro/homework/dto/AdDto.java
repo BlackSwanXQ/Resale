@@ -22,6 +22,7 @@ public class AdDto {
     @Schema(description = "цена объявления",example = "0")
     Integer price;
 
+
     @Schema(description = "заголовок объявления", example = "string")
     String title;
 }
