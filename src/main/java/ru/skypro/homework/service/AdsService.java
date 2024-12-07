@@ -13,11 +13,9 @@ import java.util.List;
 public interface AdsService {
 
     AdsDto getAdAll();
-//    Ad updateAd(Ad ad);
     ExtendedAdDto getAd(Integer id);
     void deleteAd(Integer id);
     List<String> updateImage(Long id, MultipartFile image);
     AdsDto getAdsAuthorizedUser();
     AdDto updateAds(Integer id, CreateOrUpdateAdDto createOrUpdateAd);
-//    URL getImage(Long id, HttpServletResponse response) throws MalformedURLException;
 }

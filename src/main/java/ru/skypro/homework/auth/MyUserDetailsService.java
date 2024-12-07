@@ -30,9 +30,7 @@ public class MyUserDetailsService implements UserDetailsManager {
     public UserDetails loadUserByUsername(String email) {
         UserEntity user = userRepository.findByEmail(email).orElseThrow(() -> {
             log.info("Имя пользователя не найдено: " + email);
-//            return new UsernameNotFoundException(email);
-            System.out.println("exception");
-            return null;
+            return new UserNotFoundException("User not found " + email);
         });
         return new MyUserPrincipal(user);
     }
@@ -50,30 +48,28 @@ public class MyUserDetailsService implements UserDetailsManager {
                         .getAuthority()
                         .replace("ROLE_", "")));
         userRepository.save(user1);
-        log.info("Вы успешно добавили нового пользователя");
+        log.info("Добавлен новый пользоваетель: " + user1.getEmail());
     }
 
     @Override
     public void updateUser(UserDetails user) {
         UserEntity userEdit = userRepository.findByEmail(user.getUsername()).orElseThrow(() -> {
-//            log.info("Пользователь не найден", UserNotFoundException.class);
-//            return new UserNotFoundException();
-            return null;
+            log.info("Пользователь не найден", UserNotFoundException.class);
+            return new UserNotFoundException("user not found " + user.getUsername());
         });
         userEdit.setEmail(user.getUsername());
         userRepository.save(userEdit);
-//        logger.info("Вы успешно обновили пользователя");
+        log.info("Пользователь обновлен");
     }
 
     @Override
     public void deleteUser(String username) {
         UserEntity userToDelete = userRepository.findByEmail(username).orElseThrow(() -> {
-//            log.info("Пользователь не найден", UserNotFoundException.class);
-//            return new UserNotFoundException();
-            return null;
+            log.info("Пользователь не найден", UserNotFoundException.class);
+            return new UserNotFoundException("user not found " + username);
         });
         userRepository.delete(userToDelete);
-//        logger.info("Вы успешно удалили пользователя " + userToDelete);
+        log.info("Пользователь удален " + userToDelete);
     }
 
     @Override
@@ -84,7 +80,7 @@ public class MyUserDetailsService implements UserDetailsManager {
         UserEntity user = userRepository.findByEmail(auth.getName()).orElseThrow(() -> {
 
             log.info("User not found", UserNotFoundException.class);
-            return new UserNotFoundException("User not found exception");
+            return new UserNotFoundException("User not found " + auth.getName());
         });
 
         UserDetails userDetails =
@@ -97,9 +93,8 @@ public class MyUserDetailsService implements UserDetailsManager {
 
         user.setPassword(userDetails.getPassword());
         userRepository.save(user);
-//        logger.info("Вы успешно изменили пароль");
+        log.info("Пароль изменен");
     }
-
 
     @Override
     public boolean userExists(String username) {

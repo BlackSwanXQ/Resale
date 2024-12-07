@@ -12,7 +12,6 @@ import ru.skypro.homework.entity.UserEntity;
 
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
 public interface UserMapper {
-//    UserMapper INSTANCE = Mappers.getMapper(UserMapper.class);
 
     UserEntity toUpdateUser(UpdateUserDto source);
 

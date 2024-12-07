@@ -29,43 +29,10 @@ public class ImageController {
     private final AvatarService avatarService;
     private final ImageAdService imageAdService;
     private final ImageRepository imageRepository;
-//    @GetMapping(value = "/image-avatar/{id}", produces = {MediaType.IMAGE_JPEG_VALUE, "image/*"})
-//    public byte[] getAvatar(@PathVariable Integer id) {
-//        log.info("Вызван метод контролера возращаюший массив байт аватара");
-////        return avatarService.getAvatar(id);
-//        return null;
-//    }
-
 
     @GetMapping(value = "/image-ad/{id}", produces = {MediaType.IMAGE_JPEG_VALUE, MediaType.IMAGE_PNG_VALUE, "image/*"})
     public byte[] getImageAd(@PathVariable Integer id) throws IOException {
         log.info("Вызван метод контролера возращаюший массив байт изображения объявления");
         return imageAdService.getImageAd(id);
-
     }
-
-//    @GetMapping(value="/image-avatar/{ids}")
-//    public ResponseEntity<List<byte[]>> getImages(@PathVariable List<Integer> ids) throws IOException {
-//        List<byte[]> images = new ArrayList<>();
-//
-//        for (Integer id : ids) {
-//            ImageAdEntity imageAd = imageRepository.findImageAdByAdId(id).orElseThrow(() -> {
-//                log.info("Пользователь не найден", UserNotFoundException.class);
-//                return new UserNotFoundException("not");
-//
-//            });
-//            String path = imageAd.getPath();
-//            System.out.println(path);
-//            byte[] imageBytes = Files.readAllBytes(Paths.get(path));
-//            images.add(imageBytes);
-//        }
-//        System.out.println(images.size());
-//        return ResponseEntity.ok(images);
-//
-////        return ResponseEntity.ok()
-////                .contentType(MediaType.APPLICATION_OCTET_STREAM)
-////                .body(images);
-//    }
-
-
 }

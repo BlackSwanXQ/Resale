@@ -34,7 +34,6 @@ import static java.nio.file.Paths.get;
 @Slf4j
 @Service
 public class AvatarServiceImpl implements AvatarService {
-    //    Logger logger = LoggerFactory.getLogger(AvatarServiceImpl.class);
     private final UserRepository userRepository;
     private final AvatarRepository avatarRepository;
     private final Path path;
@@ -52,7 +51,6 @@ public class AvatarServiceImpl implements AvatarService {
     /**
      * Сохранеет или меняет аватарку у пользователя.
      */
-
     @Override
     public void updateImage(MultipartFile multipartFile) throws IOException {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -71,7 +69,6 @@ public class AvatarServiceImpl implements AvatarService {
         try {
             byte[] data = multipartFile.getBytes();
             String extention = StringUtils.getFilenameExtension(multipartFile.getOriginalFilename());
-//            Path imagePath = path.resolve(UUID.randomUUID().toString() + "." + extention);
             Path imagePath = path.resolve(user.getId() + "." + extention);
             Files.write(imagePath, data);
 
@@ -79,7 +76,6 @@ public class AvatarServiceImpl implements AvatarService {
             avatar.setMediaType(multipartFile.getContentType());
             avatar.setFileSize(multipartFile.getSize());
             avatar.setUser(user);
-//            avatar.setData(data);
             avatarRepository.save(avatar);
             user.setAvatar(avatar);
             userRepository.save(user);
@@ -87,7 +83,6 @@ public class AvatarServiceImpl implements AvatarService {
             throw new NullPointerException();
         }
     }
-
 
     /**
      * Возращает аватар в виде массива байт.

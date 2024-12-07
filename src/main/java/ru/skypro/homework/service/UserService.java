@@ -19,9 +19,5 @@ public interface UserService {
 
     UserDto getUser();
     UpdateUserDto updateUser(UpdateUserDto userPatch);
-//    MyUserDetails getUserDetails();
-
-//    String updateImage(MultipartFile animalPhoto) throws IOException; //original
-//
     URL getImage(Long id, HttpServletResponse response) throws MalformedURLException;
 }

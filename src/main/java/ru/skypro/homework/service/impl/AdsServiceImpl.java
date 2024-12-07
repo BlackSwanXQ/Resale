@@ -41,28 +41,15 @@ import static java.nio.file.Paths.get;
 @Service
 public class AdsServiceImpl implements AdsService {
 
-    private final ImageRepository imageRepository;
     private final AdRepository adRepository;
-//    private final Path path;
     private final AdMapper adMapper;
-    private final UserRepository userRepository;
-    private final ImageAdService imageAdService;
 
-    AdsServiceImpl(ImageRepository imageRepository,
-                   AdRepository adRepository,
-//                   @Value("${path.to.images.folder}") String imagesDirName,
-                   AdMapper adMapper,
-                   UserRepository userRepository,
-                   ImageAdService imageAdService
+    AdsServiceImpl(AdRepository adRepository,
+                   AdMapper adMapper
                    ) {
-        this.imageRepository = imageRepository;
         this.adRepository = adRepository;
-//        path = get(imagesDirName);
         this.adMapper = adMapper;
-        this.userRepository = userRepository;
-        this.imageAdService = imageAdService;
     }
-
 
 
     /**
@@ -98,7 +85,7 @@ public class AdsServiceImpl implements AdsService {
     @Override
     public ExtendedAdDto getAd(Integer id) {
         log.info("Вы вызвали метод получения информации об объявлении");
-        AdEntity ad = adRepository.findById(id).orElseThrow(() ->{
+        AdEntity ad = adRepository.findById(id).orElseThrow(() -> {
             log.info("Объявление не найдено", AdNotFoundException.class);
             return new AdNotFoundException("Ad not found");
         });
@@ -124,7 +111,7 @@ public class AdsServiceImpl implements AdsService {
      */
     @Override
     public AdDto updateAds(Integer id, CreateOrUpdateAdDto createOrUpdateAdDto) {
-        AdEntity ad = adRepository.findById(id).orElseThrow(() ->{
+        AdEntity ad = adRepository.findById(id).orElseThrow(() -> {
             log.info("Объявление не найдено", AdNotFoundException.class);
             return new AdNotFoundException("Ad not found");
         });
@@ -134,7 +121,6 @@ public class AdsServiceImpl implements AdsService {
         log.info("Вы успешно изменили информацию в объявлении");
         return adMapper.toAdDto(adRepository.save(ad));
     }
-
 
 
     @Override

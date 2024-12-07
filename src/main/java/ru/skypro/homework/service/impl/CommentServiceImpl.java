@@ -118,5 +118,4 @@ public class CommentServiceImpl implements CommentService {
         log.info("Комментарий удалён");
         return commentsMapper.commentToCommentDTO(comment);
     }
-
 }

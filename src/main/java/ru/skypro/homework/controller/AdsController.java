@@ -50,7 +50,6 @@ public class AdsController {
     @GetMapping
     public ResponseEntity<AdsDto> getAds() {
         log.info("The getAds method of AdsController is called");
-//        AdsDto adsDto = adsService.getAdAll();
         return ResponseEntity.ok().body(adsService.getAdAll());
     }
 
@@ -142,14 +141,4 @@ public class AdsController {
                                                      @RequestPart("image") MultipartFile image) throws IOException {
         return ResponseEntity.ok().body(imageAdService.updateAdImage(id, image));
     }
-
-
-
-
-//    @GetMapping(value = "/image/{id}", produces = {MediaType.IMAGE_JPEG_VALUE, "image/*"})
-//    public byte[] getImageAd(@PathVariable Integer id) throws IOException {
-//        log.info("Вызван метод контролера возращаюший массив байт аватара");
-//        System.out.println(id);
-//        return imageAdService.getImageAd(id);
-//    }
 }

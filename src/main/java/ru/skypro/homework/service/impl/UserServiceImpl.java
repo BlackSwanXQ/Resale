@@ -46,35 +46,19 @@ import static java.nio.file.Paths.get;
 
 @Slf4j
 @Service
-//@AllArgsConstructor
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final UserMapper userMapper;
-    private final PasswordEncoder encoder;
-    //    private final FileManager fileManager;
-    private final CheckService checkService;
-    private final WebSecurityConfig webSecurityConfig;
     private final MyUserDetailsService myUserDetailsService;
 
 
     public UserServiceImpl(UserRepository userRepository,
                            UserMapper userMapper,
-                           PasswordEncoder encoder,
-                           CheckService checkService,
-                           WebSecurityConfig webSecurityConfig,
-                           MyUserDetailsService myUserDetailsService,
-
-                           AvatarRepository avatarRepository
-
+                           MyUserDetailsService myUserDetailsService
     ) {
         this.userRepository = userRepository;
         this.userMapper = userMapper;
-        this.encoder = encoder;
-        this.checkService = checkService;
-        this.webSecurityConfig = webSecurityConfig;
-
-//        this.avatarRepository = avatarRepository;
         this.myUserDetailsService = myUserDetailsService;
     }
 
@@ -95,13 +79,11 @@ public class UserServiceImpl implements UserService {
     public UserDto getUser() {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String userName = ((UserDetails) principal).getUsername();
-//        System.out.println(userMapper.toUserDto((userRepository.findByEmail(userName)).get()));
         return userMapper.toUserDto((userRepository.findByEmail(userName).orElseThrow(() -> {
             log.info("Пользователь не найден", UserNotFoundException.class);
             return new UserNotFoundException("User not found");
         })));
     }
-
 
     /**
      * Изменение данных пользователя

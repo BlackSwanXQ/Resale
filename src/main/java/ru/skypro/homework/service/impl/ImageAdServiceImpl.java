@@ -66,7 +66,6 @@ public class ImageAdServiceImpl implements ImageAdService {
         return adMapper.toAdDto(ad);
     }
 
-
     /**
      * Сохранеет или меняет фотографию в объявлении.
      */

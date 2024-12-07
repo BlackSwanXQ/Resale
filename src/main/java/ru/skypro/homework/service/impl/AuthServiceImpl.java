@@ -17,7 +17,6 @@ import java.util.Optional;
 
 @Slf4j
 @Service
-//@AllArgsConstructor
 public class AuthServiceImpl implements AuthService {
 
     private final UserMapper userMapper;
@@ -50,12 +49,6 @@ public class AuthServiceImpl implements AuthService {
             return false;
         }
         UserDetails userDetails = manager.loadUserByUsername(loginDto.getUsername()); // Получает информацию о пользователе по имени.
-
-//        Authentication authentication = new UsernamePasswordAuthenticationToken(userDetails, loginDto.getPassword(), userDetails.getAuthorities());
-
-        // Устанавливаем аутентификацию в контекст безопасности
-//        SecurityContextHolder.getContext().setAuthentication(authentication);
-
         return encoder.matches(loginDto.getPassword(), userDetails.getPassword()); // Сравнивает введенный пароль с хешированным паролем из базы данных.
     }
 
@@ -63,18 +56,6 @@ public class AuthServiceImpl implements AuthService {
     @Override
     public boolean register(RegisterDto register) {
         log.info("The register method of AuthServiceImpl is called");
-
-//        if (manager.userExists(register.getUsername())) {
-//            return false;
-//        }
-//        manager.createUser(
-//                User.builder()
-//                        .passwordEncoder(this.encoder::encode)
-//                        .password(register.getPassword())
-//                        .username(register.getUsername())
-//                        .roles(register.getRole().name())
-//                        .build());
-
 
         Optional<UserEntity> user = userRepository.findByEmail(register.getUsername());
         if (user.isPresent()) {
@@ -84,24 +65,6 @@ public class AuthServiceImpl implements AuthService {
         UserEntity newUser = userMapper.toUser(register);
         newUser.setPassword(encoder.encode(register.getPassword()));
         userRepository.save(newUser);
-//        UserDetails userDetails = manager.loadUserByUsername(register.getUsername());
-//        System.out.println();
         return true;
     }
-
-//        UserDetails user = User.builder()
-//                .username(register.getUsername())
-//                .password(encoder.encode(register.getPassword()))
-//                .roles(String.valueOf(register.getRole()))
-//                .build();
-//        userDetailsManager.createUser(user);
-//        return true;
-//    }
-
-
-//    public void authenticateUser(String username, String password) {
-//        UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(username, password);
-//        Authentication authentication = authenticationManager.authenticate(token);
-//        SecurityContextHolder.getContext().setAuthentication(authentication);
-//    }
 }
