@@ -19,6 +19,7 @@ public interface AdMapper {
 //    AdDto adToAdDto(AdEntity source);
 
 
+
 //    @Mapping(source = "author", target = "author.id")
 //    @Mapping(source = "image", target = "image.path")
 //    @Mapping(source = "pk", target = "id")
@@ -48,6 +49,7 @@ public interface AdMapper {
 //    default String map(ImageAdEntity image) {
 //        return image != null ? image.getPath() : null;
 //    }
+
     @Mappings({
             @Mapping(target = "author", source = "author.id"),
             @Mapping(target = "pk", source = "id"),

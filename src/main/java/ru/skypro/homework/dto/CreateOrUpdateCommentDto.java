@@ -9,5 +9,7 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class CreateOrUpdateCommentDto {
     @Schema(minLength = 8, maxLength = 64, description = "текст комментария")
+
     String text;
+
 }

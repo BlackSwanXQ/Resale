@@ -39,6 +39,7 @@ public class AvatarServiceImpl implements AvatarService {
     private final AvatarRepository avatarRepository;
     private final Path path;
 
+
     public AvatarServiceImpl(UserRepository userRepository,
                              AvatarRepository avatarRepository,
                              @Value("/images") String imagesDirName) {
@@ -87,6 +88,7 @@ public class AvatarServiceImpl implements AvatarService {
             throw new NullPointerException();
         }
     }
+
 
     /**
      * Возращает аватар в виде массива байт.

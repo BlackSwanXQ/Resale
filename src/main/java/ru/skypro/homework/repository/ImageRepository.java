@@ -5,8 +5,10 @@ import ru.skypro.homework.entity.ImageAdEntity;
 
 import java.util.Optional;
 
+
 public interface ImageRepository extends JpaRepository<ImageAdEntity, Long> {
     Optional<ImageAdEntity> findImageAdByAdId(Integer id);
 //    Optional<UserEntity> findByEmail(String username);
+
 
 }
