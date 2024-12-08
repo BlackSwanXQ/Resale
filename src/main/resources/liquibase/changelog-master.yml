@@ -1,3 +1,5 @@
 databaseChangeLog:
   - include:
       file: /liquibase/changelog/init.yml
+  - include:
+      file: /liquibase/changelog/add-pass-to-user.yml
