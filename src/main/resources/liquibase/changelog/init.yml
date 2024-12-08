@@ -1,0 +1,164 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: Andrey Khr
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_users
+                  name: id
+                  remarks: Идентификатор пользователя
+                  type: BIGINT
+              - column:
+                  constraints:
+                    nullable: false
+                  name: email
+                  remarks: Логин пользователя
+                  type: VARCHAR(255)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: firstname
+                  remarks: имя пользователя
+                  type: VARCHAR(255)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: lastname
+                  remarks: Фамилия пользователя
+                  type: VARCHAR(255)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: phone
+                  remarks: Телефон пользователя
+                  type: VARCHAR(255)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: role
+                  remarks: роль пользователя
+                  type: VARCHAR(20)
+              - column:
+                  name: image
+                  remarks: ссылка на аватар пользователя
+                  type: VARCHAR(255)
+            remarks: Пользователи
+            tableName: users
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_ads
+                  name: id
+                  remarks: id объявления
+                  type: BIGINT
+              - column:
+                  constraints:
+                    nullable: false
+                  name: author
+                  remarks: id автора объявления
+                  type: BIGINT
+              - column:
+                  constraints:
+                    nullable: false
+                  name: title
+                  remarks: заголовок объявления
+                  type: VARCHAR(32)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: price
+                  remarks: цена объявления
+                  type: BIGINT
+              - column:
+                  name: image
+                  remarks: ссылка на картинку объявления
+                  type: VARCHAR(255)
+              - column:
+                  name: description
+                  remarks: описание объявления
+                  type: VARCHAR(63)
+            remarks: Объявления
+            tableName: ads
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_comments
+                  name: id
+                  remarks: id комментария объявления
+                  type: BIGINT
+              - column:
+                  constraints:
+                    nullable: false
+                  name: author
+                  remarks: id автора комментария
+                  type: BIGINT
+              - column:
+                  constraints:
+                    nullable: false
+                  name: createdAt
+                  remarks: дата и время создания комментария в миллисекундах с 00:00:00 01.01.1970
+                  type: DATETIME
+              - column:
+                  constraints:
+                    nullable: false
+                  name: text
+                  remarks: текст комментария
+                  type: VARCHAR(64)
+            remarks: Комментарии
+            tableName: comments
+
+  - changeSet:
+      id: 2
+      author: Andrey Khr
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: author
+            baseTableName: ads
+            constraintName: fk_ad_user
+            onDelete: CASCADE
+            referencedColumnNames: id
+            referencedTableName: users
+        - addForeignKeyConstraint:
+            baseColumnNames: author
+            baseTableName: comments
+            constraintName: fk_comment_user
+            onDelete: CASCADE
+            referencedColumnNames: id
+            referencedTableName: users
+
+  - changeSet:
+      id: 3
+      author: Andrey Khr
+      changes:
+        - addAutoIncrement:
+            columnDataType: BIGINT
+            columnName: id
+            defaultOnNull: true
+            generationType: ALWAYS
+            incrementBy: 1
+            tableName: users
+        - addAutoIncrement:
+            columnDataType: BIGINT
+            columnName: id
+            defaultOnNull: true
+            generationType: ALWAYS
+            incrementBy: 1
+            tableName: ads
+        - addAutoIncrement:
+            columnDataType: BIGINT
+            columnName: id
+            defaultOnNull: true
+            generationType: ALWAYS
+            incrementBy: 1
+            tableName: comments

@@ -12,7 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import ru.skypro.homework.dto.NewPasswordDto;
-import ru.skypro.homework.dto.RoleDto;
+import ru.skypro.homework.enums.Role;
 import ru.skypro.homework.dto.UpdateUserDto;
 import ru.skypro.homework.dto.UserDto;
 import ru.skypro.homework.service.UserService;
@@ -57,7 +57,7 @@ public class UserController {
         user.setEmail("Email");
         user.setPhone("Phone");
         user.setImage("/image");
-        user.setRole(RoleDto.USER);
+        user.setRole(Role.USER);
         return ResponseEntity.ok(user);
     }
 

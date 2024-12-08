@@ -24,4 +24,7 @@ public class AdDto {
 
     @Schema(description = "заголовок объявления", example = "string")
     String title;
+
+    @Schema(description = "описание объявления", example = "string")
+    String description;
 }
