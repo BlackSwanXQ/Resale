@@ -17,6 +17,8 @@ import ru.skypro.homework.dto.UpdateUserDto;
 import ru.skypro.homework.dto.UserDto;
 import ru.skypro.homework.service.UserService;
 
+import java.security.Principal;
+
 @Slf4j
 @RequestMapping("/users")
 @RestController
@@ -36,7 +38,8 @@ public class UserController {
             @ApiResponse(responseCode = "403", description = "Forbidden", content = @Content())
     })
     @PostMapping("/set_password")
-    public ResponseEntity<?> setPassword(@RequestBody NewPasswordDto newPassword) {
+    public ResponseEntity<?> setPassword(Principal principal, @RequestBody NewPasswordDto newPassword) {
+        userService.setNewPassword(principal.getName(), newPassword);
         return ResponseEntity.ok().build();
     }
 
@@ -47,17 +50,9 @@ public class UserController {
                     )),
             @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content())
     })
-
     @GetMapping("/me")
-    public ResponseEntity<UserDto> getUser() {
-        UserDto user = new UserDto();
-        user.setId(1);
-        user.setFirstName("FirstName");
-        user.setLastName("LastName");
-        user.setEmail("Email");
-        user.setPhone("Phone");
-        user.setImage("/image");
-        user.setRole(Role.USER);
+    public ResponseEntity<UserDto> getUser(Principal principal) {
+        UserDto user = userService.getUser(principal.getName());
         return ResponseEntity.ok(user);
     }
 
@@ -77,8 +72,9 @@ public class UserController {
                             content = @Content())
             })
     @PatchMapping("/me")
-    public ResponseEntity<UpdateUserDto> updateUser(@RequestBody UpdateUserDto userPatch){
-        return ResponseEntity.ok().build();
+    public ResponseEntity<UpdateUserDto> updateUser(@RequestBody UpdateUserDto userPatch, Principal principal){
+        UpdateUserDto userDto = userService.updateUser(principal.getName(), userPatch);
+        return ResponseEntity.ok(userDto);
     }
 
     @Operation(summary = "Обновление аватара авторизованного пользователя" , responses = {

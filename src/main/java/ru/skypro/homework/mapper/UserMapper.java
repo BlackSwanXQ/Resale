@@ -15,7 +15,7 @@ public interface UserMapper {
     UserDto userToUserDto(User user);
 
     @Mapping(target = "id", ignore = true)
-    @Mapping(target = "email", ignore = true)
+    @Mapping(target = "email", source = "username")
     @Mapping(target = "image", ignore = true)
     User registerDtoToUser(RegisterDto dto);
 
@@ -24,6 +24,8 @@ public interface UserMapper {
     @Mapping(target = "role", ignore = true)
     @Mapping(target = "image", ignore = true)
     void updateUserDtoToUser(@MappingTarget User user, UpdateUserDto dto);
+
+    UpdateUserDto userToUpdateUserDto(User user);
 
 
 }
