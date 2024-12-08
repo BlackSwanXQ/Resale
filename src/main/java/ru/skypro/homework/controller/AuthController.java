@@ -18,14 +18,13 @@ import ru.skypro.homework.service.AuthService;
 @Slf4j
 @CrossOrigin(value = "http://localhost:3000")
 @RestController
-//@RequiredArgsConstructor
 public class AuthController {
-
     private final AuthService authService;
 
     AuthController(AuthService authService) {
         this.authService = authService;
     }
+
 
     @Operation(summary = "Авторизация пользователя" , responses = {
             @ApiResponse(responseCode = "200", description = "OK", content = @Content()),
@@ -34,7 +33,7 @@ public class AuthController {
     @Tag(name = "Авторизация")
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginDto login) {
-        if (authService.login(login.getUsername(), login.getPassword())) {
+        if (authService.login(login)) {
             return ResponseEntity.ok().build();
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
