@@ -1,6 +1,7 @@
 package ru.skypro.homework.constants;
 
 public class Constants {
+
     public static final int MIN_PRICE = 0;
     public static final int MAX_PRICE = 10_000_000;
 
