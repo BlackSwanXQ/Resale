@@ -1,6 +1,9 @@
 package ru.skypro.homework.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import ru.skypro.homework.enums.Role;
 
 import javax.persistence.*;
@@ -8,6 +11,9 @@ import javax.persistence.*;
 @Entity
 @Table(name = "users")
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class User {
 
     @Id
@@ -33,6 +39,9 @@ public class User {
 
     @Column(name = "image")
     private String image;
+
+    @Column(name = "password")
+    private String password;
 
 
 
