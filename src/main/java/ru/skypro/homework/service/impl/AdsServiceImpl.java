@@ -101,11 +101,6 @@ public class AdsServiceImpl implements AdsService {
         log.info("Объявление удалено");
     }
 
-//    @Override
-//    public Ad updateAd(Ad ad) {
-//        return null;
-//    }
-
     /**
      * Обновление информации об объявлении.
      */

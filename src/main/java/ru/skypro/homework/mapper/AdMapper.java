@@ -19,6 +19,7 @@ public interface AdMapper {
             @Mapping(target = "author", ignore = true),
             @Mapping(target = "id", source = "pk"),
             @Mapping(target = "image", ignore = true)
+//            @Mapping(constant = "/images/ads",target = "image")
     })
     AdEntity toAd(AdDto adDTO);
 
@@ -26,6 +27,7 @@ public interface AdMapper {
             @Mapping(target = "author", source = "author.id"),
             @Mapping(target = "pk", source = "id"),
             @Mapping(target = "image", source = "image.path")
+//            @Mapping(constant = "/images/ads",target = "image")
     })
     AdDto toAdDto(AdEntity ad);
 
@@ -37,7 +39,16 @@ public interface AdMapper {
             @Mapping(target = "authorLastName", source = "author.lastName"),
             @Mapping(target = "phone", source = "author.phone"),
             @Mapping(target = "email", source = "author.email"),
-            @Mapping(target = "image", source = "image.path")
+//            @Mapping(target = "image", source = "image.path")
+            @Mapping(constant = "/ads/img/{id}", target = "image")
+//            @Mapping(expression = "java(buildImageUrl(ad.getImage().getPath()))", target = "image")
     })
     ExtendedAdDto adToExtendedAd(AdEntity ad);
+
+
+
+
+        default String buildImageUrl(String image) {
+        return "/ads/img" + image;
+    }
 }

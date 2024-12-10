@@ -31,7 +31,7 @@ import java.util.Objects;
 @Slf4j
 @RequestMapping("/users")
 @CrossOrigin(value = "http://localhost:3000")
-@Tag(name = "Пользователи")
+//@Tag(name = "Пользователи")
 @RestController
 public class UserController {
 
@@ -117,10 +117,11 @@ public class UserController {
     }
 
 
-    @GetMapping(value = "/me/image", produces = {MediaType.IMAGE_JPEG_VALUE, "image/*"})
-    public ResponseEntity<byte[]> getAvatar() throws IOException {
-        log.info("Вызван метод контролера возращаюший массив байт аватара");
-        return avatarService.getAvatar();
-    }
+//    @GetMapping(value = "/me/image{id}", produces = {MediaType.IMAGE_PNG_VALUE, "image/*"})
+//    public ResponseEntity<byte[]> getAvatar(@PathVariable("id") Integer id) throws IOException {
+//        log.info("Вызван метод контролера возращаюший массив байт аватара");
+//        System.out.println(id);
+//        return avatarService.getAvatar();
+//    }
 
 }

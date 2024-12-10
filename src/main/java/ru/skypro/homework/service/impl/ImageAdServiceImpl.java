@@ -1,6 +1,7 @@
 package ru.skypro.homework.service.impl;
 
 
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
@@ -30,6 +31,10 @@ import static java.nio.file.Paths.get;
 @Slf4j
 @Service
 public class ImageAdServiceImpl implements ImageAdService {
+
+//    @Value("${path.to.ads.folder}")
+//    private String pathDirImageAd;
+
     private final ImageRepository imageAdRepository;
     private final AdMapper adMapper;
 
@@ -107,8 +112,9 @@ public class ImageAdServiceImpl implements ImageAdService {
      * Возращает картинку объявления в виде массива байт
      */
     @Override
+    @SneakyThrows
     public byte[] getImageAd(Integer id) throws IOException {
-
+        System.out.println("IMAGE");
         ImageAdEntity imageAd = imageAdRepository.findImageAdByAdId(id).orElseThrow(() -> {
             log.info("Пользователь не найден", UserNotFoundException.class);
             return new UserNotFoundException("not");
@@ -117,9 +123,18 @@ public class ImageAdServiceImpl implements ImageAdService {
 
         String path = imageAd.getPath();
 
-        byte[] image = Files.readAllBytes(Paths.get(path));
-        return ResponseEntity.ok(image).getBody();
+        System.out.println(Paths.get(path));
+
+        return Files.readAllBytes(Paths.get(path));
     }
+
+
+//    @SneakyThrows
+//    public byte[] getImageAd(Integer adId) {
+////        return Files.readAllBytes(Path.of(pathDirImageAd, adId + imagePostfix));
+//        return Files.readAllBytes(Path.of(pathDirImageAd, String.valueOf(adId)));
+//    }
+
 
 
 }

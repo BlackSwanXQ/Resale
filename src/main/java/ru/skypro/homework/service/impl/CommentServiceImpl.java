@@ -47,8 +47,6 @@ public class CommentServiceImpl implements CommentService {
         return commentsDto;
     }
 
-
-
     /**
      * Добавляет комментарий к объявлению
      */
