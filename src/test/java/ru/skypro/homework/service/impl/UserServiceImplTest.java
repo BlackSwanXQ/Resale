@@ -38,6 +38,7 @@ import static org.mockito.Mockito.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
+
 class UserServiceImplTest {
 
     @InjectMocks
@@ -167,36 +168,8 @@ class UserServiceImplTest {
         when(userDetails.getUsername()).thenReturn(userEmail);
         when(userRepository.findByEmail(userEmail)).thenReturn(Optional.empty());
 
-       Assertions.assertThatThrownBy(() -> userService.updateUser(new UpdateUserDto()))
+        Assertions.assertThatThrownBy(() -> userService.updateUser(new UpdateUserDto()))
                 .isInstanceOf(UserNotFoundException.class)
                 .hasMessage("User not found");
     }
-
-
-
-
-
-
-
-//    @Test
-//    public void testUpdateImage() throws IOException {
-//        MultipartFile file = mock(MultipartFile.class);
-//        when(file.getOriginalFilename()).thenReturn("avatar.png");
-//        when(file.getInputStream()).thenReturn(Files.newInputStream(Path.of("src/test/resources/test-image.png")));
-//        when(file.getSize()).thenReturn(1024L);
-//        when(file.getContentType()).thenReturn("image/png");
-//
-//        when(authentication.getName()).thenReturn("user@example.com");
-//        when(userRepository.findByEmail("user@example.com")).thenReturn(user);
-//
-//        Avatar avatar = new Avatar();
-//        when(avatarRepository.findImageByUserId(user.getId())).thenReturn(avatar);
-//
-//        Avatar result = userService.updateImage(authentication, file);
-//
-//        assertNotNull(result);
-//        assertEquals(file.getSize(), result.getFileSize());
-//        assertEquals(file.getContentType(), result.getMediaType());
-//        verify(userRepository, times(1)).save(user);
-//    }
 }

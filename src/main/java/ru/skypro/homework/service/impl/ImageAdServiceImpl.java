@@ -12,6 +12,7 @@ import ru.skypro.homework.dto.AdDto;
 import ru.skypro.homework.entity.AdEntity;
 import ru.skypro.homework.entity.ImageAdEntity;
 import ru.skypro.homework.exceptions.AdNotFoundException;
+import ru.skypro.homework.exceptions.ImageException;
 import ru.skypro.homework.exceptions.UserNotFoundException;
 import ru.skypro.homework.mapper.AdMapper;
 import ru.skypro.homework.repository.AdRepository;
@@ -31,11 +32,8 @@ import static java.nio.file.Paths.get;
 @Slf4j
 @Service
 public class ImageAdServiceImpl implements ImageAdService {
-
-
     private final ImageRepository imageAdRepository;
     private final AdMapper adMapper;
-
     private final AdRepository adRepository;
     private final Path path;
     private final UserRepository userRepository;
@@ -49,7 +47,6 @@ public class ImageAdServiceImpl implements ImageAdService {
         this.adMapper = adMapper;
         this.userRepository = userRepository;
     }
-
 
     /**
      * Создаёт объявления или меняет фотографию объявления.
@@ -88,16 +85,14 @@ public class ImageAdServiceImpl implements ImageAdService {
             Path imagePath = path.resolve(id + "." + extension);
             Files.write(imagePath, data);
 
-
             image.setAd(ad);
             image.setPath(imagePath.toString());
             image.setFileSize(multipartFile.getSize());
             image.setMediaType(multipartFile.getContentType());
-//            image.setData(multipartFile.getBytes());
 
         } catch (IOException e) {
             log.info("Ошибка ввода-вывода изображения объявления: " + e.getMessage());
-            throw new RuntimeException();
+            throw new ImageException();
         }
         imageAdRepository.save(image);
         ad.setImage(image);
@@ -117,11 +112,7 @@ public class ImageAdServiceImpl implements ImageAdService {
             return new UserNotFoundException("not");
 
         });
-
         String path = imageAd.getPath();
-
-        System.out.println(Paths.get(path));
-
         return Files.readAllBytes(Paths.get(path));
     }
 }

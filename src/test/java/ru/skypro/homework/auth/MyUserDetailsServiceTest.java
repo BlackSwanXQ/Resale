@@ -33,8 +33,6 @@ class MyUserDetailsServiceTest {
 
     @InjectMocks
     private MyUserDetailsService userDetailsService;
-
-
     @Mock
     private UserRepository userRepository;
     @Mock
@@ -63,7 +61,6 @@ class MyUserDetailsServiceTest {
 
         verify(userRepository, times(1)).save(any(UserEntity.class));
     }
-
 
     @Test
     public void testLoadUserByUsernamePositive() {

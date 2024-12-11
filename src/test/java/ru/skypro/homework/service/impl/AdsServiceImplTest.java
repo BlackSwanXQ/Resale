@@ -182,7 +182,4 @@ class AdsServiceImplTest {
         verify(adRepository, never()).save(any(AdEntity.class));
         verify(adMapper, never()).toAdDto(any(AdEntity.class));
     }
-
-
-
 }

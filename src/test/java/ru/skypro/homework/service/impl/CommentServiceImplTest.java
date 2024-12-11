@@ -97,48 +97,6 @@ public class CommentServiceImplTest {
         assertThat(result.getResults().get(0).getText()).isEqualTo("Test comment");
     }
 
-//    @Test
-//    public void testCreateComment() {
-//
-//        when(adRepository.getReferenceById(1)).thenReturn(adEntity);
-//        when(userRepository.findByEmail("test@example.com")).thenReturn(Optional.of(userEntity));
-//        when(commentsMapper.commentToCommentDTO(any(CommentEntity.class))).thenReturn(commentDto);
-//        System.out.println(createOrUpdateCommentDto);
-//        CommentDto result = commentService.create(1, createOrUpdateCommentDto, "test@example.com");
-//
-//        assertThat(result.getText()).isEqualTo("Test comment");
-//        verify(commentRepository, times(1)).save(any(CommentEntity.class));
-//    }
-
-//    @Test
-//    public void testDeleteComment() {
-//        AdEntity adEntity = new AdEntity();
-//        adEntity.setId(1);
-//        CommentEntity comment = new CommentEntity();
-//        comment.setId(1);
-//       comment.setAd(adEntity);
-//        commentRepository.save(commentEntity);
-//        when(adRepository.getReferenceById(1)).thenReturn(adEntity);
-//
-//        commentService.delete(1, 1);
-//
-//        verify(entityManager, times(1)).createNativeQuery("DELETE FROM ads_comments WHERE comments_id = ?");
-//        verify(commentRepository, times(1)).deleteById(1);
-//    }
-
-//    @Test
-//    public void testUpdateComment() {
-//        when(adRepository.findById(1)).thenReturn(Optional.of(adEntity));
-//        when(commentRepository.findById(1)).thenReturn(Optional.of(commentEntity));
-//        when(commentsMapper.commentToCommentDTO(any(CommentEntity.class))).thenReturn(commentDto);
-//
-//        CommentDto result = commentService.update(1, 1, createOrUpdateCommentDto);
-//
-//        assertThat(result.getText()).isEqualTo("Updated comment");
-//        verify(entityManager, times(1)).createNativeQuery("DELETE FROM ads_comments WHERE comments_id = ?");
-//        verify(commentRepository, times(1)).save(any(CommentEntity.class));
-//    }
-
     @Test
     public void testCreateComment_UserNotFound() {
         when(adRepository.getReferenceById(1)).thenReturn(adEntity);

@@ -9,12 +9,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
-
-
 @Table(name = "users")
 @FieldDefaults(level = AccessLevel.PRIVATE)
-//@Data
-//@AllArgsConstructor
 @Entity
 @Builder
 public class UserEntity {
@@ -46,8 +42,7 @@ public class UserEntity {
         this.role = role;
     }
 
-    public UserEntity() {
-    }
+
 
     public Long getId() {
         return id;
@@ -121,31 +116,6 @@ public class UserEntity {
         this.role = role;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        UserEntity user = (UserEntity) o;
-        return Objects.equals(id, user.id) && Objects.equals(email, user.email) && Objects.equals(firstName, user.firstName) && Objects.equals(lastName, user.lastName) && Objects.equals(password, user.password) && Objects.equals(phone, user.phone) && Objects.equals(avatar, user.avatar) && Objects.equals(comments, user.comments) && role == user.role;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, email, firstName, lastName, password, phone, avatar, comments, role);
-    }
-
-    @Override
-    public String toString() {
-        return "UserEntity{" +
-                "id=" + id +
-                ", email='" + email + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", password='" + password + '\'' +
-                ", phone='" + phone + '\'' +
-                ", avatar=" + avatar +
-                ", comments=" + comments +
-                ", role=" + role +
-                '}';
+    public UserEntity() {
     }
 }

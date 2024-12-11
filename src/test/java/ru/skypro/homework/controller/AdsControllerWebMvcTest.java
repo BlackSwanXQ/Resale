@@ -62,7 +62,6 @@ class AdsControllerWebMvcTest {
     @Test
     @WithMockUser
     void getExtendedAdTest() throws Exception {
-        //given
         Integer adId = 1;
         UserEntity userEntity = new UserEntity();
         userEntity.setId(1L);

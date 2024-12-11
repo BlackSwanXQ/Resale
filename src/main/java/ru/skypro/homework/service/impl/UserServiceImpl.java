@@ -52,7 +52,6 @@ public class UserServiceImpl implements UserService {
     private final UserMapper userMapper;
     private final MyUserDetailsService myUserDetailsService;
 
-
     public UserServiceImpl(UserRepository userRepository,
                            UserMapper userMapper,
                            MyUserDetailsService myUserDetailsService
@@ -102,7 +101,4 @@ public class UserServiceImpl implements UserService {
         userRepository.save(user);
         return userPatch;
     }
-
-
-
 }

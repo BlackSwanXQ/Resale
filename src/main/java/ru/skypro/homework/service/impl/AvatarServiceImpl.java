@@ -22,7 +22,6 @@ import java.nio.file.Path;
 
 import static java.nio.file.Paths.get;
 
-
 @Slf4j
 @Service
 public class AvatarServiceImpl implements AvatarService {
@@ -47,9 +46,6 @@ public class AvatarServiceImpl implements AvatarService {
         UserEntity user = userRepository.findByEmail(userName).orElseThrow(UserNotFoundException::new
         );
 
-//        AvatarEntity avatar2 =AvatarEntity.builder()
-//                .build();
-
         AvatarEntity avatar = new AvatarEntity();
 
         if (user.getAvatar() != null) {
@@ -66,7 +62,6 @@ public class AvatarServiceImpl implements AvatarService {
             avatar.setMediaType(multipartFile.getContentType());
             avatar.setFileSize(multipartFile.getSize());
             avatar.setUser(user);
-//            avatarRepository.save(avatar);
             user.setAvatar(avatar);
             userRepository.save(user);
         } catch (IOException e) {
@@ -79,8 +74,6 @@ public class AvatarServiceImpl implements AvatarService {
      */
     @Override
     public ResponseEntity<byte[]> getAvatar(Long id) throws IOException {
-        System.out.println("getAvatar");
-        System.out.println(id);
         UserEntity user = userRepository.findById(id).orElseThrow(() -> {
             log.info("Пользователь не найден", UserNotFoundException.class);
             return new UserNotFoundException();

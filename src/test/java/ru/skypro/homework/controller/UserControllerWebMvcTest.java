@@ -80,7 +80,6 @@ class UserControllerWebMvcTest {
     @Test
     @WithMockUser
     void updateUserTest() throws Exception {
-        //given
         UserEntity user = UserEntity.builder()
                 .id(1L)
                 .email("email@email.ru")

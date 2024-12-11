@@ -4,6 +4,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;
 import org.mapstruct.Mappings;
+import ru.skypro.homework.constants.Constants;
 import ru.skypro.homework.dto.CommentDto;
 import ru.skypro.homework.dto.CreateOrUpdateCommentDto;
 import ru.skypro.homework.entity.CommentEntity;
@@ -23,11 +24,8 @@ public interface CommentsMapper {
     @Mappings({
             @Mapping(target = "pk", source = "id"),
             @Mapping(target = "author", source = "author.id"),
-//            @Mapping(expression = "java(buildImageUrl(comment.getAuthor().getId()))", target = "authorImage"),
             @Mapping(expression = "java(buildImageUrl(comment.getAuthor().getId()))", target = "authorImage"),
             @Mapping(target = "authorFirstName", source = "author.firstName"),
-//            @Mapping(target = "createdAt", expression = "java(DateUtils.yearToMillis(source.getCreatedAt().getYear()))")
-//            @Mapping(target = "createdAt", source = "createdAt.year")
             @Mapping(target = "createdAt", source = "createdAt")
     })
     CommentDto commentToCommentDTO(CommentEntity comment);
@@ -36,7 +34,7 @@ public interface CommentsMapper {
     CreateOrUpdateCommentDto commentToCreateOrUpdateCommentDto(CommentEntity comment);
 
     default String buildImageUrl(Long id) {
-        return "/users/me/image/" +id ;
+        return Constants.PATH_IMAGE +id ;
     }
 
     default long dateToMillis(Date date, TimeZone timeZone) {
@@ -48,7 +46,6 @@ public interface CommentsMapper {
         calendar.setTime(date);
         // Возвращаем время в миллисекундах с учетом часового пояса
         return calendar.getTimeInMillis();
-
     }
 
     default long localDateTimeToMillis(LocalDateTime localDateTime) {
@@ -57,5 +54,4 @@ public interface CommentsMapper {
         }
         return localDateTime.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
     }
-
 }

@@ -4,6 +4,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;
 import org.mapstruct.Mappings;
+import ru.skypro.homework.constants.Constants;
 import ru.skypro.homework.dto.AdDto;
 import ru.skypro.homework.dto.ExtendedAdDto;
 import ru.skypro.homework.entity.AdEntity;
@@ -43,6 +44,6 @@ public interface AdMapper {
     ExtendedAdDto adToExtendedAd(AdEntity ad);
 
         default String buildImageUrl(Integer pk) {
-        return "/ads/img/" + pk;
+        return Constants.PATH_IMAGE_ADS + pk;
     }
 }

@@ -27,6 +27,5 @@ public class CommentEntity {
     private AdEntity ad;
 
     public CommentEntity() {
-
     }
 }
