@@ -50,8 +50,6 @@ public class AdsServiceImpl implements AdsService {
         this.adRepository = adRepository;
         this.adMapper = adMapper;
     }
-
-
     /**
      * Возращает список всех объявлений.
      */

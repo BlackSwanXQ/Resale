@@ -1,10 +1,7 @@
 package ru.skypro.homework.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.ToString;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
@@ -41,11 +38,12 @@ import javax.persistence.*;
 @Data
 @AllArgsConstructor
 @Entity
+@Builder
 public class AvatarEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
     private String path;
     private long fileSize;
     private String mediaType;

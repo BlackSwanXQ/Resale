@@ -104,8 +104,5 @@ public class UserServiceImpl implements UserService {
     }
 
 
-    @Override
-    public URL getImage(Long id, HttpServletResponse response) throws MalformedURLException {
-        return null;
-    }
+
 }

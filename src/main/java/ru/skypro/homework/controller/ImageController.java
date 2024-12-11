@@ -32,19 +32,17 @@ public class ImageController {
 
 
 
-    @GetMapping(value = "/users/me/image", produces = {MediaType.IMAGE_PNG_VALUE, MediaType.IMAGE_JPEG_VALUE, MediaType.IMAGE_GIF_VALUE, "image/*"})
-    public ResponseEntity<byte[]> getAvatar() throws IOException {
+    @GetMapping(value = "/users/me/image/{id}", produces = {MediaType.IMAGE_PNG_VALUE, MediaType.IMAGE_JPEG_VALUE, MediaType.IMAGE_GIF_VALUE, "image/*"})
+    public ResponseEntity<byte[]> getAvatar(@PathVariable Long id) throws IOException {
         log.info("Вызван метод контролера возращаюший массив байт аватара");
-//        System.out.println("id " + id);
-//        image2.getOriginalFilename();
+        System.out.println("id " + id);
 
-        return avatarService.getAvatar();
+        return avatarService.getAvatar(id);
     }
 
     @GetMapping(value = "/ads/img/{adId}", produces = {MediaType.IMAGE_PNG_VALUE, "image/*"})
     public byte[] getImageAd(@PathVariable Integer adId) throws IOException {
         log.info("Вызван метод контролера возращаюший массив байт изображения объявления");
-        System.out.println(adId);
         return imageAdService.getImageAd(adId);
     }
 }

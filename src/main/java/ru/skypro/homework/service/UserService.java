@@ -19,5 +19,4 @@ public interface UserService {
 
     UserDto getUser();
     UpdateUserDto updateUser(UpdateUserDto userPatch);
-    URL getImage(Long id, HttpServletResponse response) throws MalformedURLException;
 }

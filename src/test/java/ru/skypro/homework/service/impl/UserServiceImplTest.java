@@ -38,7 +38,6 @@ import static org.mockito.Mockito.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
-//@ExtendWith(MockitoExtension.class)
 class UserServiceImplTest {
 
     @InjectMocks
@@ -69,7 +68,7 @@ class UserServiceImplTest {
     public void setUp() {
         MockitoAnnotations.openMocks(this);
         user = new UserEntity();
-        user.setId(1);
+        user.setId(1L);
         user.setEmail("user@example.com");
         user.setFirstName("John");
         user.setLastName("Doe");

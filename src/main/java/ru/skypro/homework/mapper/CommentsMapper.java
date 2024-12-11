@@ -8,7 +8,14 @@ import ru.skypro.homework.dto.CommentDto;
 import ru.skypro.homework.dto.CreateOrUpdateCommentDto;
 import ru.skypro.homework.entity.CommentEntity;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
 public interface CommentsMapper {
@@ -16,14 +23,39 @@ public interface CommentsMapper {
     @Mappings({
             @Mapping(target = "pk", source = "id"),
             @Mapping(target = "author", source = "author.id"),
-            @Mapping(target = "authorImage", source = "author.avatar.path"),
+//            @Mapping(expression = "java(buildImageUrl(comment.getAuthor().getId()))", target = "authorImage"),
+            @Mapping(expression = "java(buildImageUrl(comment.getAuthor().getId()))", target = "authorImage"),
             @Mapping(target = "authorFirstName", source = "author.firstName"),
-            @Mapping(target = "createdAt", source = "createdAt.year")
+//            @Mapping(target = "createdAt", expression = "java(DateUtils.yearToMillis(source.getCreatedAt().getYear()))")
+//            @Mapping(target = "createdAt", source = "createdAt.year")
+            @Mapping(target = "createdAt", source = "createdAt")
     })
     CommentDto commentToCommentDTO(CommentEntity comment);
 
-
     List<CommentDto> commentsToCommentsDTO(List<CommentEntity> comments);
     CreateOrUpdateCommentDto commentToCreateOrUpdateCommentDto(CommentEntity comment);
+
+    default String buildImageUrl(Long id) {
+        return "/users/me/image/" +id ;
+    }
+
+    default long dateToMillis(Date date, TimeZone timeZone) {
+        if (date == null) {
+            return 0;
+        }
+        // Создаем Calendar с указанным часовым поясом
+        Calendar calendar = Calendar.getInstance(timeZone);
+        calendar.setTime(date);
+        // Возвращаем время в миллисекундах с учетом часового пояса
+        return calendar.getTimeInMillis();
+
+    }
+
+    default long localDateTimeToMillis(LocalDateTime localDateTime) {
+        if (localDateTime == null) {
+            return 0L; // Возвращаем 0, если дата null
+        }
+        return localDateTime.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
+    }
 
 }
