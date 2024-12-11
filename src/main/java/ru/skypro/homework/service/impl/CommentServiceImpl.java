@@ -20,6 +20,7 @@ import ru.skypro.homework.repository.UserRepository;
 import ru.skypro.homework.service.CommentService;
 
 import javax.persistence.EntityManager;
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -47,14 +48,12 @@ public class CommentServiceImpl implements CommentService {
         return commentsDto;
     }
 
-
-
     /**
      * Добавляет комментарий к объявлению
      */
     @Override
     public CommentDto create(Integer id, CreateOrUpdateCommentDto newComment,String userName) {
-        log.info("Вызван метод изменения пароля");
+        log.info("Вызван добавления комментария");
         AdEntity ad = adRepository.getReferenceById(id);
         UserEntity user = userRepository.findByEmail(userName).orElseThrow(() -> {
             log.info("Пользователь не найден", UserNotFoundException.class);
@@ -65,6 +64,7 @@ public class CommentServiceImpl implements CommentService {
         comment.setText(newComment.getText());
         comment.setAuthor(user);
         comment.setCreatedAt(LocalDateTime.now());
+
         commentRepository.save(comment);
         ad.setComment(comment);
         adRepository.save(ad);

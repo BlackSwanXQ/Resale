@@ -50,8 +50,6 @@ public class AdsServiceImpl implements AdsService {
         this.adRepository = adRepository;
         this.adMapper = adMapper;
     }
-
-
     /**
      * Возращает список всех объявлений.
      */
@@ -100,11 +98,6 @@ public class AdsServiceImpl implements AdsService {
         adRepository.deleteById(id);
         log.info("Объявление удалено");
     }
-
-//    @Override
-//    public Ad updateAd(Ad ad) {
-//        return null;
-//    }
 
     /**
      * Обновление информации об объявлении.

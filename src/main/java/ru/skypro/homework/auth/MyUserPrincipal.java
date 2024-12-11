@@ -2,6 +2,7 @@ package ru.skypro.homework.auth;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import ru.skypro.homework.entity.UserEntity;
 
@@ -10,14 +11,12 @@ import java.util.List;
 
 public class MyUserPrincipal implements UserDetails {
     private UserEntity user;
-
     public MyUserPrincipal(UserEntity user) {
         this.user = user;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-
         return List.of(new SimpleGrantedAuthority(user.getRole().name()));
     }
 

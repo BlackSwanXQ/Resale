@@ -4,6 +4,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;
 import org.mapstruct.Mappings;
+import ru.skypro.homework.constants.Constants;
 import ru.skypro.homework.dto.AdDto;
 import ru.skypro.homework.dto.ExtendedAdDto;
 import ru.skypro.homework.entity.AdEntity;
@@ -25,7 +26,8 @@ public interface AdMapper {
     @Mappings({
             @Mapping(target = "author", source = "author.id"),
             @Mapping(target = "pk", source = "id"),
-            @Mapping(target = "image", source = "image.path")
+            @Mapping(expression = "java(buildImageUrl(ad.getId()))", target = "image")
+
     })
     AdDto toAdDto(AdEntity ad);
 
@@ -37,7 +39,11 @@ public interface AdMapper {
             @Mapping(target = "authorLastName", source = "author.lastName"),
             @Mapping(target = "phone", source = "author.phone"),
             @Mapping(target = "email", source = "author.email"),
-            @Mapping(target = "image", source = "image.path")
+            @Mapping(expression = "java(buildImageUrl(ad.getId()))", target = "image")
     })
     ExtendedAdDto adToExtendedAd(AdEntity ad);
+
+        default String buildImageUrl(Integer pk) {
+        return Constants.PATH_IMAGE_ADS + pk;
+    }
 }

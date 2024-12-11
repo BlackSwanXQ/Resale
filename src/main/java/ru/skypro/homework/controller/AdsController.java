@@ -135,10 +135,15 @@ public class AdsController {
 
     @PreAuthorize("@checkAccessService.isAdminOrOwnerAd(#id, authentication)")
     @PatchMapping(value = "/{id}/image", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-//    public ResponseEntity<List<String>> updateImage(@PathVariable("id") Integer id,
-//                                                    @RequestPart("image") MultipartFile image) throws IOException {
     public ResponseEntity<ImageAdEntity> updateImage(@PathVariable("id") Integer id,
                                                      @RequestPart("image") MultipartFile image) throws IOException {
         return ResponseEntity.ok().body(imageAdService.updateAdImage(id, image));
+    }
+
+
+    @GetMapping(value = "/img/{adId}", produces = {MediaType.IMAGE_PNG_VALUE, "image/*"})
+    public byte[] getImageAd(@PathVariable Integer adId) throws IOException {
+        log.info("Вызван метод контролера возращаюший массив байт изображения объявления");
+        return imageAdService.getImageAd(adId);
     }
 }

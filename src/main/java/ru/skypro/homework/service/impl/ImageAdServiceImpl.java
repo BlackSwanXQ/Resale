@@ -1,6 +1,7 @@
 package ru.skypro.homework.service.impl;
 
 
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +12,7 @@ import ru.skypro.homework.dto.AdDto;
 import ru.skypro.homework.entity.AdEntity;
 import ru.skypro.homework.entity.ImageAdEntity;
 import ru.skypro.homework.exceptions.AdNotFoundException;
+import ru.skypro.homework.exceptions.ImageException;
 import ru.skypro.homework.exceptions.UserNotFoundException;
 import ru.skypro.homework.mapper.AdMapper;
 import ru.skypro.homework.repository.AdRepository;
@@ -32,7 +34,6 @@ import static java.nio.file.Paths.get;
 public class ImageAdServiceImpl implements ImageAdService {
     private final ImageRepository imageAdRepository;
     private final AdMapper adMapper;
-
     private final AdRepository adRepository;
     private final Path path;
     private final UserRepository userRepository;
@@ -46,7 +47,6 @@ public class ImageAdServiceImpl implements ImageAdService {
         this.adMapper = adMapper;
         this.userRepository = userRepository;
     }
-
 
     /**
      * Создаёт объявления или меняет фотографию объявления.
@@ -85,16 +85,14 @@ public class ImageAdServiceImpl implements ImageAdService {
             Path imagePath = path.resolve(id + "." + extension);
             Files.write(imagePath, data);
 
-
             image.setAd(ad);
             image.setPath(imagePath.toString());
             image.setFileSize(multipartFile.getSize());
             image.setMediaType(multipartFile.getContentType());
-//            image.setData(multipartFile.getBytes());
 
         } catch (IOException e) {
             log.info("Ошибка ввода-вывода изображения объявления: " + e.getMessage());
-            throw new RuntimeException();
+            throw new ImageException();
         }
         imageAdRepository.save(image);
         ad.setImage(image);
@@ -107,19 +105,14 @@ public class ImageAdServiceImpl implements ImageAdService {
      * Возращает картинку объявления в виде массива байт
      */
     @Override
+    @SneakyThrows
     public byte[] getImageAd(Integer id) throws IOException {
-
         ImageAdEntity imageAd = imageAdRepository.findImageAdByAdId(id).orElseThrow(() -> {
             log.info("Пользователь не найден", UserNotFoundException.class);
             return new UserNotFoundException("not");
 
         });
-
         String path = imageAd.getPath();
-
-        byte[] image = Files.readAllBytes(Paths.get(path));
-        return ResponseEntity.ok(image).getBody();
+        return Files.readAllBytes(Paths.get(path));
     }
-
-
 }

@@ -52,7 +52,6 @@ public class UserServiceImpl implements UserService {
     private final UserMapper userMapper;
     private final MyUserDetailsService myUserDetailsService;
 
-
     public UserServiceImpl(UserRepository userRepository,
                            UserMapper userMapper,
                            MyUserDetailsService myUserDetailsService
@@ -101,15 +100,5 @@ public class UserServiceImpl implements UserService {
         user.setPhone(userPatch.getPhone());
         userRepository.save(user);
         return userPatch;
-
-    }
-
-
-
-
-
-    @Override
-    public URL getImage(Long id, HttpServletResponse response) throws MalformedURLException {
-        return null;
     }
 }

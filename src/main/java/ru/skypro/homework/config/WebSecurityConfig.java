@@ -23,9 +23,7 @@ public class WebSecurityConfig {
             "/webjars/**",
             "/login",
             "/register",
-            "/users/me/image",
-            "/ads/image"
-
+            "/images"
     };
 
 

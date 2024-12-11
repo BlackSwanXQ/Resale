@@ -20,13 +20,10 @@ import java.util.Optional;
 public class AuthServiceImpl implements AuthService {
 
     private final UserMapper userMapper;
-
     private final UserDetailsManager manager;
     private final PasswordEncoder encoder;
-
     private final UserRepository userRepository;
     private final CheckService checkService;
-
 
     public AuthServiceImpl(
             PasswordEncoder passwordEncoder,
@@ -51,7 +48,6 @@ public class AuthServiceImpl implements AuthService {
         UserDetails userDetails = manager.loadUserByUsername(loginDto.getUsername()); // Получает информацию о пользователе по имени.
         return encoder.matches(loginDto.getPassword(), userDetails.getPassword()); // Сравнивает введенный пароль с хешированным паролем из базы данных.
     }
-
 
     @Override
     public boolean register(RegisterDto register) {

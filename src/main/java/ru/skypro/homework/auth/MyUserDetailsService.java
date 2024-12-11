@@ -17,10 +17,7 @@ import ru.skypro.homework.dto.RoleDto;
 @Service
 public class MyUserDetailsService implements UserDetailsManager {
     private final PasswordEncoder encoder;
-
     private final UserRepository userRepository;
-
-
     public MyUserDetailsService(PasswordEncoder encoder, UserRepository userRepository) {
         this.encoder = encoder;
         this.userRepository = userRepository;
