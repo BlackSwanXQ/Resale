@@ -20,9 +20,6 @@ public class AdEntity {
     private Integer id;
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     private ImageAdEntity image;
-
-//    private String path;
-
     private Integer price;
     private String title;
     private String description;
@@ -30,7 +27,6 @@ public class AdEntity {
     private UserEntity author;
     @OneToMany
     private List<CommentEntity> comments;
-
 
     public AdEntity() {
     }

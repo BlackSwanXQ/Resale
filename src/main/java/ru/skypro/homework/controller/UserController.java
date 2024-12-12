@@ -47,7 +47,6 @@ public class UserController {
 
     }
 
-
     @Operation(summary = "Обновление пароля", responses = {
             @ApiResponse(responseCode = "200", description = "OK", content = @Content()),
             @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content()),
@@ -116,11 +115,9 @@ public class UserController {
         avatarService.updateImage(image);
     }
 
-
-    @GetMapping(value = "/me/image", produces = {MediaType.IMAGE_JPEG_VALUE, "image/*"})
-    public ResponseEntity<byte[]> getAvatar() throws IOException {
+    @GetMapping(value = "/me/image/{id}", produces = {MediaType.IMAGE_PNG_VALUE, MediaType.IMAGE_JPEG_VALUE, MediaType.IMAGE_GIF_VALUE, "image/*"})
+    public ResponseEntity<byte[]> getAvatar(@PathVariable Long id) throws IOException {
         log.info("Вызван метод контролера возращаюший массив байт аватара");
-        return avatarService.getAvatar();
+        return avatarService.getAvatar(id);
     }
-
 }
