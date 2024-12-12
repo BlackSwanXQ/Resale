@@ -31,10 +31,11 @@ public interface CommentsMapper {
     CommentDto commentToCommentDTO(CommentEntity comment);
 
     List<CommentDto> commentsToCommentsDTO(List<CommentEntity> comments);
+
     CreateOrUpdateCommentDto commentToCreateOrUpdateCommentDto(CommentEntity comment);
 
     default String buildImageUrl(Long id) {
-        return Constants.PATH_IMAGE +id ;
+        return Constants.PATH_IMAGE + id;
     }
 
     default long dateToMillis(Date date, TimeZone timeZone) {
@@ -54,4 +55,5 @@ public interface CommentsMapper {
         }
         return localDateTime.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
     }
+
 }
