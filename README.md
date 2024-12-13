@@ -15,9 +15,9 @@ java -jar ads-0.0.1-SNAPSHOT.jar --spring.datasource.url=URL_OF_DATABASE --sprin
 
 # Стэк технологий
 * Язык и окружение
-Java 17
-Maven
-Spring Boot
+* Java 17
+* Maven
+* Spring Boot
 Spring Web
 Spring Data JPA
 Spring Security
