@@ -29,8 +29,8 @@ java -jar ads-0.0.1-SNAPSHOT.jar --spring.datasource.url=URL_OF_DATABASE --sprin
 - База данных
   - PostgreSQL
 - Тестирование
- - JUnit
- - Mockito
+  - JUnit
+  - Mockito
 - Прочее
   - Docker
 
