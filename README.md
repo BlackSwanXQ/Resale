@@ -14,7 +14,7 @@ java -jar ads-0.0.1-SNAPSHOT.jar --spring.datasource.url=URL_OF_DATABASE --sprin
 Приложение позволяет размещать объявления с фотографиями. Делать комментарии к объявлениям.
 
 # Стэк технологий
-Язык и окружение
+* Язык и окружение
 Java 17
 Maven
 Spring Boot
