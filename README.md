@@ -17,24 +17,21 @@ java -jar ads-0.0.1-SNAPSHOT.jar --spring.datasource.url=URL_OF_DATABASE --sprin
 - Язык и окружение
   - Java 17
   - Maven
-* Spring Boot
-* Spring Web
-* Spring Data JPA
-* Spring Security
-* REST
-* Git
-*Swagger
-* Lombok
-*Liquibase
-* База данных
-* PostgreSQL
+  - Spring Boot
+  - Spring Web
+  - Spring Data JPA
+  - Spring Security
+  - REST
+  - Git
+  - Swagger
+  - Lombok
+  - Liquibase
+- База данных
+  - PostgreSQL
 - Тестирование
  - JUnit
  - Mockito
-* Прочее
-- Docker
-- Основной пункт
-  - Подпункт 1
-  - Подпункт 2
-- Другой основной пункт
+- Прочее
+  - Docker
+
 Над приложением работали: Шлапаков Алексей, Христюк Андрей, Тюльков Станислав, Шибанов Сергей.
