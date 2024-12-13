@@ -29,7 +29,8 @@ java -jar ads-0.0.1-SNAPSHOT.jar --spring.datasource.url=URL_OF_DATABASE --sprin
 * База данных
 * PostgreSQL
 * Тестирование
-* JUnit
-* Mockito
-* Docker
+- JUnit
+- Mockito
+* Прочее
+- Docker
 Над приложением работали: Шлапаков Алексей, Христюк Андрей, Тюльков Станислав, Шибанов Сергей.
