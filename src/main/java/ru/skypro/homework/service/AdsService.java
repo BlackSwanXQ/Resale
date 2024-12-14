@@ -9,13 +9,12 @@ import ru.skypro.homework.dto.ExtendedAdDto;
 import java.util.List;
 
 public interface AdsService {
-    AdDto createAd(CreateOrUpdateAdDto createOrUpdateAd, MultipartFile image);
-    AdsDto getAdAll();
-//    Ad updateAd(Ad ad);
+    AdDto createAd(CreateOrUpdateAdDto createOrUpdateAd, MultipartFile image, String userName);
+    AdsDto getAllAds();
     ExtendedAdDto getAd(Long id);
     void deleteAd(Long id);
     List<String> updateImage(Long id, MultipartFile image);
-    AdsDto getAdsAuthorizedUser();
-    AdDto updateAds(Long id, CreateOrUpdateAdDto createOrUpdateAd);
+    AdsDto getAdsAuthorizedUser(String userName);
+    AdDto updateAd(Long id, CreateOrUpdateAdDto createOrUpdateAd);
 //    URL getImage(Long id, HttpServletResponse response) throws MalformedURLException;
 }

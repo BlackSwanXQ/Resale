@@ -26,10 +26,10 @@ public interface AdMapper {
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "author", ignore = true)
     @Mapping(target = "image", ignore = true)
-    Ad createOrUpdateAdDtoToUpdate(CreateOrUpdateAdDto dto);
+    Ad createOrUpdateAdDtoToAd(CreateOrUpdateAdDto dto);
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "author", ignore = true)
     @Mapping(target = "image", ignore = true)
-    void createOrUpdateAdDtoToUpdate(CreateOrUpdateAdDto dto, @MappingTarget Ad ad);
+    void createOrUpdateAdDtoToAd(CreateOrUpdateAdDto dto, @MappingTarget Ad ad);
 }

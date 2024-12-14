@@ -81,7 +81,6 @@ public class CommentController {
                     description = "Not found",
                     content = @Content())
     })
-    @PreAuthorize("@checkAccessService.isAdminOrOwnerComment(#adId, #commentId, authentication)")
     @DeleteMapping("/{adId}/comments/{commentId}")
     public ResponseEntity<?> delete(@PathVariable(value = "adId") Long adId,
                                     @PathVariable(value = "commentId") Long commentId) {
@@ -107,7 +106,7 @@ public class CommentController {
                     description = "Not found",
                     content = @Content())
     })
-    @PreAuthorize("@checkAccessService.isAdminOrOwnerComment(#adId, #commentId, authentication)")
+//    @PreAuthorize("@checkAccessService.isAdminOrOwnerComment(#adId, #commentId, authentication)")
     @PatchMapping("/{adId}/comments/{commentId}")
     public ResponseEntity<CommentDto> update(@PathVariable(value = "adId") Long adId,
                                              @PathVariable(value = "commentId") Long commentId,

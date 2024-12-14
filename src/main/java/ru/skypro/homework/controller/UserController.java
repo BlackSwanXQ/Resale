@@ -12,7 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import ru.skypro.homework.dto.NewPasswordDto;
-import ru.skypro.homework.enums.Role;
 import ru.skypro.homework.dto.UpdateUserDto;
 import ru.skypro.homework.dto.UserDto;
 import ru.skypro.homework.service.UserService;
@@ -52,7 +51,7 @@ public class UserController {
     })
     @GetMapping("/me")
     public ResponseEntity<UserDto> getUser(Principal principal) {
-        UserDto user = userService.getUser(principal.getName());
+        UserDto user = userService.getUserDto(principal.getName());
         return ResponseEntity.ok(user);
     }
 

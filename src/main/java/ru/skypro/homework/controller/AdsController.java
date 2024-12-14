@@ -20,6 +20,7 @@ import ru.skypro.homework.dto.ExtendedAdDto;
 import ru.skypro.homework.service.AdsService;
 
 import javax.validation.Valid;
+import java.security.Principal;
 import java.util.List;
 
 @Slf4j
@@ -39,8 +40,7 @@ public class AdsController {
             @Content(mediaType = "application/json", schema = @Schema(implementation = AdsDto.class)))})
     @GetMapping
     public ResponseEntity<AdsDto> getAds() {
-        log.info("The getAds method of AdsController is called");
-        return ResponseEntity.ok().body(adsService.getAdAll());
+        return ResponseEntity.ok().body(adsService.getAllAds());
     }
 
     @Operation(summary = "Добавление объявления", tags = {"Объявления"})
@@ -51,9 +51,9 @@ public class AdsController {
             @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content())})
     @PostMapping(consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
     public ResponseEntity<AdDto> createAd(@RequestPart(value = "properties") @Valid CreateOrUpdateAdDto ad,
-                                          @RequestPart(value = "image") MultipartFile image) {
-        log.info("The createAd method of AdsController is called");
-        return ResponseEntity.status(HttpStatus.CREATED).body(adsService.createAd(ad, image));
+                                          @RequestPart(value = "image") MultipartFile image,
+                                          Principal principal) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(adsService.createAd(ad, image, principal.getName()));
     }
 
     @Operation(summary = "Получение информации об объявлении", tags = {"Объявления"})
@@ -75,7 +75,7 @@ public class AdsController {
             @ApiResponse(responseCode = "401", description = "Unauthorized"),
             @ApiResponse(responseCode = "403", description = "Forbidden"),
             @ApiResponse(responseCode = "404", description = "Not found")})
-    @PreAuthorize("@checkAccessService.isAdminOrOwnerAd(#id, authentication)")
+//    @PreAuthorize("@checkAccessService.isAdminOrOwnerAd(#id, authentication)")
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteAds(@PathVariable("id") Long id) {
         log.info("The deleteAds method of AdsController is called");
@@ -94,10 +94,10 @@ public class AdsController {
             @ApiResponse(responseCode = "404", description = "Not found",
                     content = @Content())
     })
-    @PreAuthorize("@checkAccessService.isAdminOrOwnerAd(#id, authentication)")
+//    @PreAuthorize("@checkAccessService.isAdminOrOwnerAd(#id, authentication)")
     @PatchMapping("/{id}")
-    public ResponseEntity<AdDto> updateAds(@PathVariable("id") Long id, @RequestBody CreateOrUpdateAdDto createOrUpdateAd) {
-        return ResponseEntity.ok().body(adsService.updateAds(id, createOrUpdateAd));
+    public ResponseEntity<AdDto> updateAd(@PathVariable("id") Long id, @RequestBody CreateOrUpdateAdDto createOrUpdateAd) {
+        return ResponseEntity.ok().body(adsService.updateAd(id, createOrUpdateAd));
     }
 
     @Operation(summary = "Получение объявлений авторизованного пользователя", tags = {"Объявления"})
@@ -108,8 +108,8 @@ public class AdsController {
             @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content())
     })
     @GetMapping("/me")
-    public ResponseEntity<AdsDto> getAdsAuthorizedUser() {
-        return ResponseEntity.ok().body(adsService.getAdsAuthorizedUser());
+    public ResponseEntity<AdsDto> getAdsAuthorizedUser(Principal principal) {
+        return ResponseEntity.ok().body(adsService.getAdsAuthorizedUser(principal.getName()));
     }
 
     @Operation(summary = "Обновление картинки объявления", tags = {"Объявления"})
@@ -121,7 +121,7 @@ public class AdsController {
             @ApiResponse(responseCode = "403", description = "Forbidden", content = @Content()),
             @ApiResponse(responseCode = "404", description = "Not found", content = @Content())
     })
-    @PreAuthorize("@checkAccessService.isAdminOrOwnerAd(#id, authentication)")
+//    @PreAuthorize("@checkAccessService.isAdminOrOwnerAd(#id, authentication)")
     @PatchMapping(value = "/{id}/image", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<List<String>> updateImage(@PathVariable("id") Long id,
                                                     @RequestPart("image") MultipartFile image) {

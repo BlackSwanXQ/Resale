@@ -2,7 +2,10 @@ package ru.skypro.homework.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -15,6 +18,8 @@ import static org.springframework.security.config.Customizer.withDefaults;
 
 @Configuration
 //@EnableSwagger2
+@EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig {
 
     private static final String[] AUTH_WHITELIST = {
@@ -35,13 +40,15 @@ public class WebSecurityConfig {
                                 authorization
                                         .mvcMatchers(AUTH_WHITELIST)
                                         .permitAll()
-                                        .mvcMatchers("/ads/**", "/users/**")
+                                        .mvcMatchers("/ads**", "/users**")
                                         .authenticated())
                 .cors()
                 .and()
-                .httpBasic(withDefaults());
+                .httpBasic(withDefaults())
+                .sessionManagement(c->c.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
         return http.build();
     }
+
 
     @Bean
     public PasswordEncoder passwordEncoder() {
